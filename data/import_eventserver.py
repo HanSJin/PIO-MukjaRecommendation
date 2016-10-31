@@ -41,27 +41,35 @@ def import_events(client):
     )
     count += 1
 
-  # each user randomly viewed 10 items
+  # each user randomly rated 10 items
   for user_id in user_ids:
-    for viewed_item in random.sample(item_ids, 10):
-      print "User", user_id ,"views item", viewed_item
+    for rated_item in random.sample(item_ids, 10):
+      print "User", user_id ,"rates item", rated_item
       client.create_event(
-        event="view",
+        event="rate",
         entity_type="user",
         entity_id=user_id,
         target_entity_type="item",
-        target_entity_id=viewed_item
+        target_entity_id=rated_item,
+        properties= { "rating" : float(random.uniform(0.5, 5.0)) }
+      )
+      client.create_event(
+	      event="view",
+	      entity_type="user",
+	      entity_id=user_id,
+	      target_entity_type="item",
+	      target_entity_id=rated_item
       )
       count += 1
       # randomly buy some of the viewed items
       if random.choice([True, False]):
-        print "User", user_id ,"buys item", viewed_item
+        print "User", user_id ,"buys item", rated_item
         client.create_event(
           event="buy",
           entity_type="user",
           entity_id=user_id,
           target_entity_type="item",
-          target_entity_id=viewed_item
+          target_entity_id=rated_item
         )
         count += 1
 

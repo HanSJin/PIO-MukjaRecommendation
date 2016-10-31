@@ -4,16 +4,16 @@
   "engineFactory": "org.template.ecommercerecommendation.ECommerceRecommendationEngine",
   "datasource": {
     "params" : {
-      "appName": "INVALID_APP_NAME"
+      "appName": "juwonApp"
     }
   },
   "algorithms": [
     {
       "name": "ecomm",
       "params": {
-        "appName": "INVALID_APP_NAME",
+        "appName": "juwonApp",
         "unseenOnly": true,
-        "seenEvents": ["buy", "view"],
+        "seenEvents": ["buy", "view", "rate"],
         "similarEvents": ["view"],
         "rank": 10,
         "numIterations" : 20,
