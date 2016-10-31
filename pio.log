@@ -19980,3 +19980,406 @@ java.lang.NullPointerException
 
 
 
+2016-10-31 15:32:26,765 INFO  io.prediction.tools.console.App$ [main] -                 Name |   ID |                                                       Access Key | Allowed Event(s)
+2016-10-31 15:32:26,815 INFO  io.prediction.tools.console.App$ [main] -                  AAA |   22 | HV7DPG_uWELgjg5MtS-kThu3mGO9ikmU5-p6DRNzBK-BBnk89n2yR4DK_wiKKqzK | (all)
+2016-10-31 15:32:26,820 INFO  io.prediction.tools.console.App$ [main] -              Android |   26 | Wl_qIIHjGfIgDX1L84jqXHQ3ZFLVxb4ejV3Fz6GX4vRzEf7noPO1DxDFfFJJB8mJ | (all)
+2016-10-31 15:32:26,834 INFO  io.prediction.tools.console.App$ [main] -                MJApp |   14 | IK5vaM3Y9bOLqxokoCfA6UY1itzxVg9m1lggFcHNu-LEKH-YG9eA3Y1kqI97nPtO | (all)
+2016-10-31 15:32:26,848 INFO  io.prediction.tools.console.App$ [main] -             juwonApp |   27 | 0O0nUdFSp1_38FcrZ6mrnWr4j6IeTAeDuGjwfSb1ytkupaEEyJrvz7KCQBB15dr8 | (all)
+2016-10-31 15:32:26,849 INFO  io.prediction.tools.console.App$ [main] - Finished listing 6 app(s).
+2016-10-31 15:33:11,326 INFO  io.prediction.tools.console.Console$ [main] - Using existing engine manifest JSON at /home/ec2-user/PIO-MukjaRecommendation/manifest.json
+2016-10-31 15:33:11,392 INFO  io.prediction.tools.console.Console$ [main] - Using command '/home/ec2-user/PredictionIO-0.9.6/sbt/sbt' at the current working directory to build.
+2016-10-31 15:33:11,402 INFO  io.prediction.tools.console.Console$ [main] - If the path above is incorrect, this process will fail.
+2016-10-31 15:33:11,409 INFO  io.prediction.tools.console.Console$ [main] - Uber JAR disabled. Making sure lib/pio-assembly-0.9.6.jar is absent.
+2016-10-31 15:33:11,412 INFO  io.prediction.tools.console.Console$ [main] - Going to run: /home/ec2-user/PredictionIO-0.9.6/sbt/sbt  package assemblyPackageDependency
+2016-10-31 15:33:11,966 DEBUG io.prediction.workflow.UpgradeCheckRunner [Thread-0] - java.net.UnknownHostException: {e.getMessage}
+2016-10-31 15:33:15,801 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[0minfo[0m] [0mLoading project definition from /home/ec2-user/PIO-MukjaRecommendation/project[0m
+2016-10-31 15:33:17,030 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[0minfo[0m] [0mSet current project to template-scala-parallel-ecommercerecommendation (in build file:/home/ec2-user/PIO-MukjaRecommendation/)[0m
+2016-10-31 15:33:17,967 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[0minfo[0m] [0mCompiling 5 Scala sources to /home/ec2-user/PIO-MukjaRecommendation/target/scala-2.10/classes...[0m
+2016-10-31 15:33:21,110 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m/home/ec2-user/PIO-MukjaRecommendation/src/main/scala/ECommAlgorithm.scala:68: value viewEvents is not a member of org.template.ecommercerecommendation.PreparedData[0m
+2016-10-31 15:33:21,111 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m    require(!data.viewEvents.take(1).isEmpty,[0m
+2016-10-31 15:33:21,112 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m                  ^[0m
+2016-10-31 15:33:21,787 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[33mwarn[0m] [0m/home/ec2-user/PIO-MukjaRecommendation/src/main/scala/ECommAlgorithm.scala:345: This catches all Throwables. If this is really intended, use `case e : Throwable` to clear this warning.[0m
+2016-10-31 15:33:21,787 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[33mwarn[0m] [0m          case e => {[0m
+2016-10-31 15:33:21,787 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[33mwarn[0m] [0m               ^[0m
+2016-10-31 15:33:21,825 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[33mwarn[0m] [0m/home/ec2-user/PIO-MukjaRecommendation/src/main/scala/ECommAlgorithm.scala:416: This catches all Throwables. If this is really intended, use `case e : Throwable` to clear this warning.[0m
+2016-10-31 15:33:21,825 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[33mwarn[0m] [0m        case e => {[0m
+2016-10-31 15:33:21,825 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[33mwarn[0m] [0m             ^[0m
+2016-10-31 15:33:22,221 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[33mwarn[0m] [0mtwo warnings found[0m
+2016-10-31 15:33:22,222 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0mone error found[0m
+2016-10-31 15:33:22,260 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m(compile:[31mcompile[0m) Compilation failed[0m
+2016-10-31 15:33:22,264 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0mTotal time: 5 s, completed 2016. 10. 31 오후 3:33:22[0m
+2016-10-31 15:33:22,303 ERROR io.prediction.tools.console.Console$ [main] - Return code of previous step is 1. Aborting.
+2016-10-31 15:33:55,176 INFO  io.prediction.tools.console.Console$ [main] - Using existing engine manifest JSON at /home/ec2-user/PIO-MukjaRecommendation/manifest.json
+2016-10-31 15:33:55,250 INFO  io.prediction.tools.console.Console$ [main] - Using command '/home/ec2-user/PredictionIO-0.9.6/sbt/sbt' at the current working directory to build.
+2016-10-31 15:33:55,250 INFO  io.prediction.tools.console.Console$ [main] - If the path above is incorrect, this process will fail.
+2016-10-31 15:33:55,251 INFO  io.prediction.tools.console.Console$ [main] - Uber JAR disabled. Making sure lib/pio-assembly-0.9.6.jar is absent.
+2016-10-31 15:33:55,252 INFO  io.prediction.tools.console.Console$ [main] - Going to run: /home/ec2-user/PredictionIO-0.9.6/sbt/sbt  package assemblyPackageDependency
+2016-10-31 15:33:55,775 DEBUG io.prediction.workflow.UpgradeCheckRunner [Thread-0] - java.net.UnknownHostException: {e.getMessage}
+2016-10-31 15:33:59,753 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[0minfo[0m] [0mLoading project definition from /home/ec2-user/PIO-MukjaRecommendation/project[0m
+2016-10-31 15:34:01,199 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[0minfo[0m] [0mSet current project to template-scala-parallel-ecommercerecommendation (in build file:/home/ec2-user/PIO-MukjaRecommendation/)[0m
+2016-10-31 15:34:02,242 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[0minfo[0m] [0mCompiling 5 Scala sources to /home/ec2-user/PIO-MukjaRecommendation/target/scala-2.10/classes...[0m
+2016-10-31 15:34:05,701 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[33mwarn[0m] [0m/home/ec2-user/PIO-MukjaRecommendation/src/main/scala/ECommAlgorithm.scala:345: This catches all Throwables. If this is really intended, use `case e : Throwable` to clear this warning.[0m
+2016-10-31 15:34:05,702 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[33mwarn[0m] [0m          case e => {[0m
+2016-10-31 15:34:05,704 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[33mwarn[0m] [0m               ^[0m
+2016-10-31 15:34:05,737 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[33mwarn[0m] [0m/home/ec2-user/PIO-MukjaRecommendation/src/main/scala/ECommAlgorithm.scala:416: This catches all Throwables. If this is really intended, use `case e : Throwable` to clear this warning.[0m
+2016-10-31 15:34:05,738 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[33mwarn[0m] [0m        case e => {[0m
+2016-10-31 15:34:05,738 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[33mwarn[0m] [0m             ^[0m
+2016-10-31 15:34:12,389 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[33mwarn[0m] [0mthere were 1 deprecation warning(s); re-run with -deprecation for details[0m
+2016-10-31 15:34:12,410 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[33mwarn[0m] [0mthree warnings found[0m
+2016-10-31 15:34:12,580 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[33mwarn[0m] [0mNo main class detected[0m
+2016-10-31 15:34:12,617 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[0minfo[0m] [0mPackaging /home/ec2-user/PIO-MukjaRecommendation/target/scala-2.10/template-scala-parallel-ecommercerecommendation_2.10-0.1-SNAPSHOT.jar ...[0m
+2016-10-31 15:34:12,665 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[0minfo[0m] [0mDone packaging.[0m
+2016-10-31 15:34:12,678 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[32msuccess[0m] [0mTotal time: 11 s, completed 2016. 10. 31 오후 3:34:12[0m
+2016-10-31 15:34:13,025 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[33mwarn[0m] [0mNo main class detected[0m
+2016-10-31 15:34:13,317 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[0minfo[0m] [0mIncluding from cache: scala-library.jar[0m
+2016-10-31 15:34:13,331 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[0minfo[0m] [0mCompiling 3 Scala sources to /home/ec2-user/PIO-MukjaRecommendation/target/scala-2.10/test-classes...[0m
+2016-10-31 15:34:14,211 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m/home/ec2-user/PIO-MukjaRecommendation/src/test/scala/ECommAlgorithmTest.scala:43: not found: value ViewEvent[0m
+2016-10-31 15:34:14,211 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m    ViewEvent("u0", "i0", 1000010),[0m
+2016-10-31 15:34:14,211 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m    ^[0m
+2016-10-31 15:34:14,212 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m/home/ec2-user/PIO-MukjaRecommendation/src/test/scala/ECommAlgorithmTest.scala:44: not found: value ViewEvent[0m
+2016-10-31 15:34:14,212 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m    ViewEvent("u0", "i1", 1000020),[0m
+2016-10-31 15:34:14,212 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m    ^[0m
+2016-10-31 15:34:14,213 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m/home/ec2-user/PIO-MukjaRecommendation/src/test/scala/ECommAlgorithmTest.scala:45: not found: value ViewEvent[0m
+2016-10-31 15:34:14,213 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m    ViewEvent("u0", "i1", 1000020),[0m
+2016-10-31 15:34:14,213 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m    ^[0m
+2016-10-31 15:34:14,214 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m/home/ec2-user/PIO-MukjaRecommendation/src/test/scala/ECommAlgorithmTest.scala:46: not found: value ViewEvent[0m
+2016-10-31 15:34:14,214 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m    ViewEvent("u1", "i1", 1000030),[0m
+2016-10-31 15:34:14,214 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m    ^[0m
+2016-10-31 15:34:14,214 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m/home/ec2-user/PIO-MukjaRecommendation/src/test/scala/ECommAlgorithmTest.scala:47: not found: value ViewEvent[0m
+2016-10-31 15:34:14,214 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m    ViewEvent("u1", "i2", 1000040)[0m
+2016-10-31 15:34:14,214 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m    ^[0m
+2016-10-31 15:34:14,326 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m/home/ec2-user/PIO-MukjaRecommendation/src/test/scala/ECommAlgorithmTest.scala:62: not found: value viewEvents[0m
+2016-10-31 15:34:14,326 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m      viewEvents = sc.parallelize(view.toSeq),[0m
+2016-10-31 15:34:14,327 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m      ^[0m
+2016-10-31 15:34:14,355 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m/home/ec2-user/PIO-MukjaRecommendation/src/test/scala/ECommAlgorithmTest.scala:86: not found: value viewEvents[0m
+2016-10-31 15:34:14,355 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m      viewEvents = sc.parallelize(view.toSeq),[0m
+2016-10-31 15:34:14,355 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m      ^[0m
+2016-10-31 15:34:14,665 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m/home/ec2-user/PIO-MukjaRecommendation/src/test/scala/PreparatorTest.scala:21: not found: value ViewEvent[0m
+2016-10-31 15:34:14,666 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m    ViewEvent("u0", "i0", 1000010),[0m
+2016-10-31 15:34:14,666 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m    ^[0m
+2016-10-31 15:34:14,666 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m/home/ec2-user/PIO-MukjaRecommendation/src/test/scala/PreparatorTest.scala:22: not found: value ViewEvent[0m
+2016-10-31 15:34:14,666 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m    ViewEvent("u0", "i1", 1000020),[0m
+2016-10-31 15:34:14,666 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m    ^[0m
+2016-10-31 15:34:14,675 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m/home/ec2-user/PIO-MukjaRecommendation/src/test/scala/PreparatorTest.scala:23: not found: value ViewEvent[0m
+2016-10-31 15:34:14,675 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m    ViewEvent("u1", "i1", 1000030)[0m
+2016-10-31 15:34:14,675 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m    ^[0m
+2016-10-31 15:34:14,713 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m/home/ec2-user/PIO-MukjaRecommendation/src/test/scala/PreparatorTest.scala:38: not found: value viewEvents[0m
+2016-10-31 15:34:14,714 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m      viewEvents = sc.parallelize(view.toSeq),[0m
+2016-10-31 15:34:14,714 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m      ^[0m
+2016-10-31 15:34:14,718 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m11 errors found[0m
+2016-10-31 15:34:14,747 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m(test:[31mcompile[0m) Compilation failed[0m
+2016-10-31 15:34:14,750 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0mTotal time: 2 s, completed 2016. 10. 31 오후 3:34:14[0m
+2016-10-31 15:34:14,796 ERROR io.prediction.tools.console.Console$ [main] - Return code of previous step is 1. Aborting.
+2016-10-31 15:38:23,051 INFO  io.prediction.tools.console.Console$ [main] - Using existing engine manifest JSON at /home/ec2-user/PIO-MukjaRecommendation/manifest.json
+2016-10-31 15:38:23,118 INFO  io.prediction.tools.console.Console$ [main] - Using command '/home/ec2-user/PredictionIO-0.9.6/sbt/sbt' at the current working directory to build.
+2016-10-31 15:38:23,118 INFO  io.prediction.tools.console.Console$ [main] - If the path above is incorrect, this process will fail.
+2016-10-31 15:38:23,119 INFO  io.prediction.tools.console.Console$ [main] - Uber JAR disabled. Making sure lib/pio-assembly-0.9.6.jar is absent.
+2016-10-31 15:38:23,119 INFO  io.prediction.tools.console.Console$ [main] - Going to run: /home/ec2-user/PredictionIO-0.9.6/sbt/sbt  package assemblyPackageDependency
+2016-10-31 15:38:23,564 DEBUG io.prediction.workflow.UpgradeCheckRunner [Thread-0] - java.net.UnknownHostException: {e.getMessage}
+2016-10-31 15:38:27,527 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[0minfo[0m] [0mLoading project definition from /home/ec2-user/PIO-MukjaRecommendation/project[0m
+2016-10-31 15:38:28,713 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[0minfo[0m] [0mSet current project to template-scala-parallel-ecommercerecommendation (in build file:/home/ec2-user/PIO-MukjaRecommendation/)[0m
+2016-10-31 15:38:29,731 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[33mwarn[0m] [0mNo main class detected[0m
+2016-10-31 15:38:29,761 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[32msuccess[0m] [0mTotal time: 1 s, completed 2016. 10. 31 오후 3:38:29[0m
+2016-10-31 15:38:30,129 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[33mwarn[0m] [0mNo main class detected[0m
+2016-10-31 15:38:30,446 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[0minfo[0m] [0mIncluding from cache: scala-library.jar[0m
+2016-10-31 15:38:30,483 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[0minfo[0m] [0mCompiling 3 Scala sources to /home/ec2-user/PIO-MukjaRecommendation/target/scala-2.10/test-classes...[0m
+2016-10-31 15:38:32,128 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m/home/ec2-user/PIO-MukjaRecommendation/src/test/scala/ECommAlgorithmTest.scala:43: not found: value ViewEvent[0m
+2016-10-31 15:38:32,129 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m    ViewEvent("u0", "i0", 1000010),[0m
+2016-10-31 15:38:32,130 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m    ^[0m
+2016-10-31 15:38:32,132 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m/home/ec2-user/PIO-MukjaRecommendation/src/test/scala/ECommAlgorithmTest.scala:44: not found: value ViewEvent[0m
+2016-10-31 15:38:32,132 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m    ViewEvent("u0", "i1", 1000020),[0m
+2016-10-31 15:38:32,132 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m    ^[0m
+2016-10-31 15:38:32,133 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m/home/ec2-user/PIO-MukjaRecommendation/src/test/scala/ECommAlgorithmTest.scala:45: not found: value ViewEvent[0m
+2016-10-31 15:38:32,134 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m    ViewEvent("u0", "i1", 1000020),[0m
+2016-10-31 15:38:32,134 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m    ^[0m
+2016-10-31 15:38:32,135 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m/home/ec2-user/PIO-MukjaRecommendation/src/test/scala/ECommAlgorithmTest.scala:46: not found: value ViewEvent[0m
+2016-10-31 15:38:32,136 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m    ViewEvent("u1", "i1", 1000030),[0m
+2016-10-31 15:38:32,136 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m    ^[0m
+2016-10-31 15:38:32,137 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m/home/ec2-user/PIO-MukjaRecommendation/src/test/scala/ECommAlgorithmTest.scala:47: not found: value ViewEvent[0m
+2016-10-31 15:38:32,138 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m    ViewEvent("u1", "i2", 1000040)[0m
+2016-10-31 15:38:32,138 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m    ^[0m
+2016-10-31 15:38:32,422 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m/home/ec2-user/PIO-MukjaRecommendation/src/test/scala/ECommAlgorithmTest.scala:62: not found: value viewEvents[0m
+2016-10-31 15:38:32,423 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m      viewEvents = sc.parallelize(view.toSeq),[0m
+2016-10-31 15:38:32,423 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m      ^[0m
+2016-10-31 15:38:32,521 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m/home/ec2-user/PIO-MukjaRecommendation/src/test/scala/ECommAlgorithmTest.scala:86: not found: value viewEvents[0m
+2016-10-31 15:38:32,522 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m      viewEvents = sc.parallelize(view.toSeq),[0m
+2016-10-31 15:38:32,523 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m      ^[0m
+2016-10-31 15:38:33,349 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m/home/ec2-user/PIO-MukjaRecommendation/src/test/scala/PreparatorTest.scala:21: not found: value ViewEvent[0m
+2016-10-31 15:38:33,349 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m    ViewEvent("u0", "i0", 1000010),[0m
+2016-10-31 15:38:33,349 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m    ^[0m
+2016-10-31 15:38:33,349 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m/home/ec2-user/PIO-MukjaRecommendation/src/test/scala/PreparatorTest.scala:22: not found: value ViewEvent[0m
+2016-10-31 15:38:33,349 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m    ViewEvent("u0", "i1", 1000020),[0m
+2016-10-31 15:38:33,349 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m    ^[0m
+2016-10-31 15:38:33,353 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m/home/ec2-user/PIO-MukjaRecommendation/src/test/scala/PreparatorTest.scala:23: not found: value ViewEvent[0m
+2016-10-31 15:38:33,353 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m    ViewEvent("u1", "i1", 1000030)[0m
+2016-10-31 15:38:33,353 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m    ^[0m
+2016-10-31 15:38:33,423 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m/home/ec2-user/PIO-MukjaRecommendation/src/test/scala/PreparatorTest.scala:38: not found: value viewEvents[0m
+2016-10-31 15:38:33,424 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m      viewEvents = sc.parallelize(view.toSeq),[0m
+2016-10-31 15:38:33,424 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m      ^[0m
+2016-10-31 15:38:33,441 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m11 errors found[0m
+2016-10-31 15:38:33,474 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0m(test:[31mcompile[0m) Compilation failed[0m
+2016-10-31 15:38:33,478 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[31merror[0m] [0mTotal time: 4 s, completed 2016. 10. 31 오후 3:38:33[0m
+2016-10-31 15:38:33,513 ERROR io.prediction.tools.console.Console$ [main] - Return code of previous step is 1. Aborting.
+2016-10-31 15:42:48,120 INFO  io.prediction.tools.console.App$ [main] -                 Name |   ID |                                                       Access Key | Allowed Event(s)
+2016-10-31 15:42:48,179 INFO  io.prediction.tools.console.App$ [main] -                  AAA |   22 | HV7DPG_uWELgjg5MtS-kThu3mGO9ikmU5-p6DRNzBK-BBnk89n2yR4DK_wiKKqzK | (all)
+2016-10-31 15:42:48,188 INFO  io.prediction.tools.console.App$ [main] -              Android |   26 | Wl_qIIHjGfIgDX1L84jqXHQ3ZFLVxb4ejV3Fz6GX4vRzEf7noPO1DxDFfFJJB8mJ | (all)
+2016-10-31 15:42:48,200 INFO  io.prediction.tools.console.App$ [main] -                MJApp |   14 | IK5vaM3Y9bOLqxokoCfA6UY1itzxVg9m1lggFcHNu-LEKH-YG9eA3Y1kqI97nPtO | (all)
+2016-10-31 15:42:48,215 INFO  io.prediction.tools.console.App$ [main] -             juwonApp |   27 | 0O0nUdFSp1_38FcrZ6mrnWr4j6IeTAeDuGjwfSb1ytkupaEEyJrvz7KCQBB15dr8 | (all)
+2016-10-31 15:42:48,216 INFO  io.prediction.tools.console.App$ [main] - Finished listing 7 app(s).
+2016-10-31 15:43:28,619 INFO  io.prediction.tools.console.App$ [main] -                 Name |   ID |                                                       Access Key | Allowed Event(s)
+2016-10-31 15:43:28,675 INFO  io.prediction.tools.console.App$ [main] -              Android |   26 | Wl_qIIHjGfIgDX1L84jqXHQ3ZFLVxb4ejV3Fz6GX4vRzEf7noPO1DxDFfFJJB8mJ | (all)
+2016-10-31 15:43:28,686 INFO  io.prediction.tools.console.App$ [main] -                MJApp |   14 | IK5vaM3Y9bOLqxokoCfA6UY1itzxVg9m1lggFcHNu-LEKH-YG9eA3Y1kqI97nPtO | (all)
+2016-10-31 15:43:28,698 INFO  io.prediction.tools.console.App$ [main] -             juwonApp |   27 | 0O0nUdFSp1_38FcrZ6mrnWr4j6IeTAeDuGjwfSb1ytkupaEEyJrvz7KCQBB15dr8 | (all)
+2016-10-31 15:43:28,699 INFO  io.prediction.tools.console.App$ [main] - Finished listing 6 app(s).
+2016-10-31 15:44:06,460 ERROR io.prediction.data.storage.elasticsearch.ESApps [main] - [pio_meta][2] null
+2016-10-31 15:45:11,731 INFO  io.prediction.data.storage.hbase.HBLEvents [main] - The table pio_event:events_33 doesn't exist yet. Creating now...
+2016-10-31 15:45:12,065 INFO  io.prediction.tools.console.App$ [main] - Initialized Event Store for this app ID: 33.
+2016-10-31 15:46:12,106 ERROR io.prediction.data.storage.elasticsearch.ESAccessKeys [main] - [pio_meta][0] Primary shard is not active or isn't assigned is a known node. Timeout: [1m], request: index {[pio_meta][accesskeys][H-pEZAWYSGB42i_pMDc17S5xcS16r_vcRPaICFZMEujCZKjtYxFjVo6pZcYIDeeq], source[{"key":"H-pEZAWYSGB42i_pMDc17S5xcS16r_vcRPaICFZMEujCZKjtYxFjVo6pZcYIDeeq","appid":33,"events":[]}]}
+2016-10-31 15:46:12,107 INFO  io.prediction.tools.console.App$ [main] - Created new app:
+2016-10-31 15:46:12,107 INFO  io.prediction.tools.console.App$ [main] -       Name: MyApp1
+2016-10-31 15:46:12,108 INFO  io.prediction.tools.console.App$ [main] -         ID: 33
+2016-10-31 15:46:12,108 INFO  io.prediction.tools.console.App$ [main] - Access Key: H-pEZAWYSGB42i_pMDc17S5xcS16r_vcRPaICFZMEujCZKjtYxFjVo6pZcYIDeeq
+2016-10-31 15:46:21,565 INFO  io.prediction.tools.console.App$ [main] -                 Name |   ID |                                                       Access Key | Allowed Event(s)
+2016-10-31 15:46:21,614 INFO  io.prediction.tools.console.App$ [main] -              Android |   26 | Wl_qIIHjGfIgDX1L84jqXHQ3ZFLVxb4ejV3Fz6GX4vRzEf7noPO1DxDFfFJJB8mJ | (all)
+2016-10-31 15:46:21,633 INFO  io.prediction.tools.console.App$ [main] - Finished listing 5 app(s).
+2016-10-31 17:05:31,413 INFO  io.prediction.tools.console.App$ [main] -                 Name |   ID |                                                       Access Key | Allowed Event(s)
+2016-10-31 17:05:31,463 INFO  io.prediction.tools.console.App$ [main] -              Android |   26 | Wl_qIIHjGfIgDX1L84jqXHQ3ZFLVxb4ejV3Fz6GX4vRzEf7noPO1DxDFfFJJB8mJ | (all)
+2016-10-31 17:05:31,478 INFO  io.prediction.tools.console.App$ [main] -                juown |   34 | vje-u-ykRRXrXHb5gLmN7hwbUjrbGScPG-e64AL7Qkq2h8cVRQKQ1-ubH_kIqrao | (all)
+2016-10-31 17:05:31,484 INFO  io.prediction.tools.console.App$ [main] -              mijeong |   38 | dwly5NGrFJjfuE59tbLkX9eCFhhRWxWttQR6E34tpIMfhsnbDcu2V9Pgyo5ytxUt | (all)
+2016-10-31 17:05:31,489 INFO  io.prediction.tools.console.App$ [main] -                 rec3 |   36 | -7upb7gMb-OMsSOIHJn-s6onoKDT4Qc98vhinrxuO8z1Z2pWZR_YmSRRVDkw8cD2 | (all)
+2016-10-31 17:05:31,490 INFO  io.prediction.tools.console.App$ [main] - Finished listing 8 app(s).
+2016-10-31 17:07:10,496 INFO  io.prediction.tools.console.Console$ [main] - Inspecting PredictionIO...
+2016-10-31 17:07:10,500 INFO  io.prediction.tools.console.Console$ [main] - PredictionIO 0.9.6 is installed at /home/ec2-user/PredictionIO-0.9.6
+2016-10-31 17:07:10,500 INFO  io.prediction.tools.console.Console$ [main] - Inspecting Apache Spark...
+2016-10-31 17:07:10,517 INFO  io.prediction.tools.console.Console$ [main] - Apache Spark is installed at /home/ec2-user/PredictionIO-0.9.6/vendors/spark-1.5.1-bin-hadoop2.6
+2016-10-31 17:07:10,565 INFO  io.prediction.tools.console.Console$ [main] - Apache Spark 1.5.1 detected (meets minimum requirement of 1.3.0)
+2016-10-31 17:07:10,565 INFO  io.prediction.tools.console.Console$ [main] - Inspecting storage backend connections...
+2016-10-31 17:07:10,588 INFO  io.prediction.data.storage.Storage$ [main] - Verifying Meta Data Backend (Source: ELASTICSEARCH)...
+2016-10-31 17:07:12,028 INFO  io.prediction.data.storage.Storage$ [main] - Verifying Model Data Backend (Source: LOCALFS)...
+2016-10-31 17:07:12,042 INFO  io.prediction.data.storage.Storage$ [main] - Verifying Event Data Backend (Source: HBASE)...
+2016-10-31 17:07:13,471 INFO  io.prediction.data.storage.Storage$ [main] - Test writing to Event Store (App Id 0)...
+2016-10-31 17:07:13,760 INFO  io.prediction.data.storage.hbase.HBLEvents [main] - The table pio_event:events_0 doesn't exist yet. Creating now...
+2016-10-31 17:07:14,382 INFO  io.prediction.data.storage.hbase.HBLEvents [main] - Removing table pio_event:events_0...
+2016-10-31 17:07:15,792 INFO  io.prediction.tools.console.Console$ [main] - (sleeping 5 seconds for all messages to show up...)
+2016-10-31 17:07:20,793 INFO  io.prediction.tools.console.Console$ [main] - Your system is all ready to go.
+2016-10-31 17:07:28,359 INFO  io.prediction.tools.console.Console$ [main] - Using existing engine manifest JSON at /home/ec2-user/PIO-MukjaRecommendation/manifest.json
+2016-10-31 17:07:28,426 INFO  io.prediction.tools.console.Console$ [main] - Using command '/home/ec2-user/PredictionIO-0.9.6/sbt/sbt' at the current working directory to build.
+2016-10-31 17:07:28,426 INFO  io.prediction.tools.console.Console$ [main] - If the path above is incorrect, this process will fail.
+2016-10-31 17:07:28,427 INFO  io.prediction.tools.console.Console$ [main] - Uber JAR disabled. Making sure lib/pio-assembly-0.9.6.jar is absent.
+2016-10-31 17:07:28,428 INFO  io.prediction.tools.console.Console$ [main] - Going to run: /home/ec2-user/PredictionIO-0.9.6/sbt/sbt  package assemblyPackageDependency
+2016-10-31 17:07:28,892 DEBUG io.prediction.workflow.UpgradeCheckRunner [Thread-0] - java.net.UnknownHostException: {e.getMessage}
+2016-10-31 17:07:33,123 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[0minfo[0m] [0mLoading project definition from /home/ec2-user/PIO-MukjaRecommendation/project[0m
+2016-10-31 17:07:35,172 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[0minfo[0m] [0mSet current project to template-scala-parallel-ecommercerecommendation (in build file:/home/ec2-user/PIO-MukjaRecommendation/)[0m
+2016-10-31 17:07:36,581 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[0minfo[0m] [0mCompiling 1 Scala source to /home/ec2-user/PIO-MukjaRecommendation/target/scala-2.10/classes...[0m
+2016-10-31 17:07:41,867 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[33mwarn[0m] [0m/home/ec2-user/PIO-MukjaRecommendation/src/main/scala/ECommAlgorithm.scala:351: This catches all Throwables. If this is really intended, use `case e : Throwable` to clear this warning.[0m
+2016-10-31 17:07:41,868 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[33mwarn[0m] [0m          case e => {[0m
+2016-10-31 17:07:41,869 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[33mwarn[0m] [0m               ^[0m
+2016-10-31 17:07:41,928 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[33mwarn[0m] [0m/home/ec2-user/PIO-MukjaRecommendation/src/main/scala/ECommAlgorithm.scala:422: This catches all Throwables. If this is really intended, use `case e : Throwable` to clear this warning.[0m
+2016-10-31 17:07:41,928 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[33mwarn[0m] [0m        case e => {[0m
+2016-10-31 17:07:41,928 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[33mwarn[0m] [0m             ^[0m
+2016-10-31 17:07:50,424 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[33mwarn[0m] [0mtwo warnings found[0m
+2016-10-31 17:07:50,594 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[33mwarn[0m] [0mNo main class detected[0m
+2016-10-31 17:07:50,649 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[0minfo[0m] [0mPackaging /home/ec2-user/PIO-MukjaRecommendation/target/scala-2.10/template-scala-parallel-ecommercerecommendation_2.10-0.1-SNAPSHOT.jar ...[0m
+2016-10-31 17:07:50,728 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[0minfo[0m] [0mDone packaging.[0m
+2016-10-31 17:07:50,739 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[32msuccess[0m] [0mTotal time: 15 s, completed 2016. 10. 31 오후 5:07:50[0m
+2016-10-31 17:07:51,405 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[0minfo[0m] [0mIncluding from cache: scala-library.jar[0m
+2016-10-31 17:07:51,503 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[33mwarn[0m] [0mNo main class detected[0m
+2016-10-31 17:07:51,818 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[0minfo[0m] [0m[36mRun completed in 34 milliseconds.[0m[0m
+2016-10-31 17:07:51,818 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[0minfo[0m] [0m[36mTotal number of tests run: 0[0m[0m
+2016-10-31 17:07:51,819 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[0minfo[0m] [0m[36mSuites: completed 0, aborted 0[0m[0m
+2016-10-31 17:07:51,819 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[0minfo[0m] [0m[36mTests: succeeded 0, failed 0, canceled 0, ignored 0, pending 0[0m[0m
+2016-10-31 17:07:51,819 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[0minfo[0m] [0m[33mNo tests were executed.[0m[0m
+2016-10-31 17:07:51,822 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[0minfo[0m] [0mChecking every *.class/*.jar file's SHA-1.[0m
+2016-10-31 17:07:51,885 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[0minfo[0m] [0mMerging files...[0m
+2016-10-31 17:07:52,230 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[33mwarn[0m] [0mMerging 'META-INF/MANIFEST.MF' with strategy 'discard'[0m
+2016-10-31 17:07:52,334 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[33mwarn[0m] [0mStrategy 'discard' was applied to a file[0m
+2016-10-31 17:07:52,416 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[0minfo[0m] [0mAssembly up to date: /home/ec2-user/PIO-MukjaRecommendation/target/scala-2.10/template-scala-parallel-ecommercerecommendation-assembly-0.1-SNAPSHOT-deps.jar[0m
+2016-10-31 17:07:52,428 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[32msuccess[0m] [0mTotal time: 2 s, completed 2016. 10. 31 오후 5:07:52[0m
+2016-10-31 17:07:52,456 INFO  io.prediction.tools.console.Console$ [main] - Build finished successfully.
+2016-10-31 17:07:52,456 INFO  io.prediction.tools.console.Console$ [main] - Looking for an engine...
+2016-10-31 17:07:52,463 INFO  io.prediction.tools.console.Console$ [main] - Found template-scala-parallel-ecommercerecommendation_2.10-0.1-SNAPSHOT.jar
+2016-10-31 17:07:52,464 INFO  io.prediction.tools.console.Console$ [main] - Found template-scala-parallel-ecommercerecommendation-assembly-0.1-SNAPSHOT-deps.jar
+2016-10-31 17:07:53,106 INFO  org.elasticsearch.plugins [main] - [Achebe] loaded [], sites []
+2016-10-31 17:07:53,925 INFO  io.prediction.tools.RegisterEngine$ [main] - Registering engine rHpMWBgRhwaOgWqb2Bv7l0PipdnYH8o6 6c981e817e32ba0314b43c74da30e53b003d78dc
+2016-10-31 17:07:53,953 INFO  io.prediction.tools.console.Console$ [main] - Your engine is ready for training.
+2016-10-31 17:09:11,525 INFO  io.prediction.tools.console.Console$ [main] - Using existing engine manifest JSON at /home/ec2-user/PIO-MukjaRecommendation/manifest.json
+2016-10-31 17:09:13,800 INFO  io.prediction.tools.Runner$ [main] - Submission command: /home/ec2-user/PredictionIO-0.9.6/vendors/spark-1.5.1-bin-hadoop2.6/bin/spark-submit --class io.prediction.workflow.CreateWorkflow --jars file:/home/ec2-user/PIO-MukjaRecommendation/target/scala-2.10/template-scala-parallel-ecommercerecommendation_2.10-0.1-SNAPSHOT.jar,file:/home/ec2-user/PIO-MukjaRecommendation/target/scala-2.10/template-scala-parallel-ecommercerecommendation-assembly-0.1-SNAPSHOT-deps.jar --files file:/home/ec2-user/PredictionIO-0.9.6/conf/log4j.properties,file:/home/ec2-user/PredictionIO-0.9.6/vendors/hbase-1.0.0/conf/hbase-site.xml --driver-class-path /home/ec2-user/PredictionIO-0.9.6/conf:/home/ec2-user/PredictionIO-0.9.6/vendors/hbase-1.0.0/conf file:/home/ec2-user/PredictionIO-0.9.6/lib/pio-assembly-0.9.6.jar --engine-id rHpMWBgRhwaOgWqb2Bv7l0PipdnYH8o6 --engine-version 6c981e817e32ba0314b43c74da30e53b003d78dc --engine-variant file:/home/ec2-user/PIO-MukjaRecommendation/engine.json --verbosity 0 --json-extractor Both --env PIO_STORAGE_SOURCES_HBASE_TYPE=hbase,PIO_ENV_LOADED=1,PIO_STORAGE_REPOSITORIES_METADATA_NAME=pio_meta,PIO_FS_BASEDIR=/home/ec2-user/.pio_store,PIO_STORAGE_SOURCES_ELASTICSEARCH_HOSTS=localhost,PIO_STORAGE_SOURCES_HBASE_HOME=/home/ec2-user/PredictionIO-0.9.6/vendors/hbase-1.0.0,PIO_HOME=/home/ec2-user/PredictionIO-0.9.6,PIO_FS_ENGINESDIR=/home/ec2-user/.pio_store/engines,PIO_STORAGE_SOURCES_LOCALFS_PATH=/home/ec2-user/.pio_store/models,PIO_STORAGE_SOURCES_ELASTICSEARCH_TYPE=elasticsearch,PIO_STORAGE_REPOSITORIES_METADATA_SOURCE=ELASTICSEARCH,PIO_STORAGE_REPOSITORIES_MODELDATA_SOURCE=LOCALFS,PIO_STORAGE_REPOSITORIES_EVENTDATA_NAME=pio_event,PIO_STORAGE_SOURCES_ELASTICSEARCH_HOME=/home/ec2-user/PredictionIO-0.9.6/vendors/elasticsearch-1.4.4,PIO_FS_TMPDIR=/home/ec2-user/.pio_store/tmp,PIO_STORAGE_REPOSITORIES_MODELDATA_NAME=pio_model,PIO_STORAGE_REPOSITORIES_EVENTDATA_SOURCE=HBASE,PIO_CONF_DIR=/home/ec2-user/PredictionIO-0.9.6/conf,PIO_STORAGE_SOURCES_ELASTICSEARCH_PORTS=9300,PIO_STORAGE_SOURCES_LOCALFS_TYPE=localfs
+2016-10-31 17:09:18,020 INFO  io.prediction.controller.Engine [main] - Extracting datasource params...
+2016-10-31 17:09:18,186 INFO  io.prediction.workflow.WorkflowUtils$ [main] - No 'name' is found. Default empty String will be used.
+2016-10-31 17:09:18,218 INFO  io.prediction.controller.Engine [main] - Datasource params: (,DataSourceParams(mijeong))
+2016-10-31 17:09:18,234 INFO  io.prediction.controller.Engine [main] - Extracting preparator params...
+2016-10-31 17:09:18,237 INFO  io.prediction.controller.Engine [main] - Preparator params: (,Empty)
+2016-10-31 17:09:18,586 INFO  io.prediction.controller.Engine [main] - Extracting serving params...
+2016-10-31 17:09:18,587 INFO  io.prediction.controller.Engine [main] - Serving params: (,Empty)
+2016-10-31 17:10:03,527 INFO  io.prediction.tools.console.Console$ [main] - Using existing engine manifest JSON at /home/ec2-user/PIO-MukjaRecommendation/manifest.json
+2016-10-31 17:10:05,221 INFO  io.prediction.tools.Runner$ [main] - Submission command: /home/ec2-user/PredictionIO-0.9.6/vendors/spark-1.5.1-bin-hadoop2.6/bin/spark-submit --class io.prediction.workflow.CreateWorkflow --jars file:/home/ec2-user/PIO-MukjaRecommendation/target/scala-2.10/template-scala-parallel-ecommercerecommendation_2.10-0.1-SNAPSHOT.jar,file:/home/ec2-user/PIO-MukjaRecommendation/target/scala-2.10/template-scala-parallel-ecommercerecommendation-assembly-0.1-SNAPSHOT-deps.jar --files file:/home/ec2-user/PredictionIO-0.9.6/conf/log4j.properties,file:/home/ec2-user/PredictionIO-0.9.6/vendors/hbase-1.0.0/conf/hbase-site.xml --driver-class-path /home/ec2-user/PredictionIO-0.9.6/conf:/home/ec2-user/PredictionIO-0.9.6/vendors/hbase-1.0.0/conf file:/home/ec2-user/PredictionIO-0.9.6/lib/pio-assembly-0.9.6.jar --engine-id rHpMWBgRhwaOgWqb2Bv7l0PipdnYH8o6 --engine-version 6c981e817e32ba0314b43c74da30e53b003d78dc --engine-variant file:/home/ec2-user/PIO-MukjaRecommendation/engine.json --verbosity 0 --json-extractor Both --env PIO_STORAGE_SOURCES_HBASE_TYPE=hbase,PIO_ENV_LOADED=1,PIO_STORAGE_REPOSITORIES_METADATA_NAME=pio_meta,PIO_FS_BASEDIR=/home/ec2-user/.pio_store,PIO_STORAGE_SOURCES_ELASTICSEARCH_HOSTS=localhost,PIO_STORAGE_SOURCES_HBASE_HOME=/home/ec2-user/PredictionIO-0.9.6/vendors/hbase-1.0.0,PIO_HOME=/home/ec2-user/PredictionIO-0.9.6,PIO_FS_ENGINESDIR=/home/ec2-user/.pio_store/engines,PIO_STORAGE_SOURCES_LOCALFS_PATH=/home/ec2-user/.pio_store/models,PIO_STORAGE_SOURCES_ELASTICSEARCH_TYPE=elasticsearch,PIO_STORAGE_REPOSITORIES_METADATA_SOURCE=ELASTICSEARCH,PIO_STORAGE_REPOSITORIES_MODELDATA_SOURCE=LOCALFS,PIO_STORAGE_REPOSITORIES_EVENTDATA_NAME=pio_event,PIO_STORAGE_SOURCES_ELASTICSEARCH_HOME=/home/ec2-user/PredictionIO-0.9.6/vendors/elasticsearch-1.4.4,PIO_FS_TMPDIR=/home/ec2-user/.pio_store/tmp,PIO_STORAGE_REPOSITORIES_MODELDATA_NAME=pio_model,PIO_STORAGE_REPOSITORIES_EVENTDATA_SOURCE=HBASE,PIO_CONF_DIR=/home/ec2-user/PredictionIO-0.9.6/conf,PIO_STORAGE_SOURCES_ELASTICSEARCH_PORTS=9300,PIO_STORAGE_SOURCES_LOCALFS_TYPE=localfs
+2016-10-31 17:10:07,337 INFO  io.prediction.controller.Engine [main] - Extracting datasource params...
+2016-10-31 17:10:07,409 INFO  io.prediction.workflow.WorkflowUtils$ [main] - No 'name' is found. Default empty String will be used.
+2016-10-31 17:10:07,422 INFO  io.prediction.controller.Engine [main] - Datasource params: (,DataSourceParams(mijeong))
+2016-10-31 17:10:07,423 INFO  io.prediction.controller.Engine [main] - Extracting preparator params...
+2016-10-31 17:10:07,424 INFO  io.prediction.controller.Engine [main] - Preparator params: (,Empty)
+2016-10-31 17:10:07,625 INFO  io.prediction.controller.Engine [main] - Extracting serving params...
+2016-10-31 17:10:07,625 INFO  io.prediction.controller.Engine [main] - Serving params: (,Empty)
+2016-10-31 17:11:08,911 ERROR io.prediction.data.storage.elasticsearch.ESEngineInstances [main] - [pio_meta][2] Primary shard is not active or isn't assigned is a known node. Timeout: [1m], request: index {[pio_meta][engine_instances][AVgbuDz2SIQpG1moi7eU], source[{"id":"","status":"INIT","startTime":"2016-10-31T17:10:07.692Z","endTime":"2016-10-31T17:10:07.695Z","engineId":"rHpMWBgRhwaOgWqb2Bv7l0PipdnYH8o6","engineVersion":"6c981e817e32ba0314b43c74da30e53b003d78dc","engineVariant":"default","engineFactory":"org.template.ecommercerecommendation.ECommerceRecommendationEngine","batch":"","env":{"PIO_STORAGE_SOURCES_HBASE_TYPE":"hbase","PIO_ENV_LOADED":"1","PIO_STORAGE_REPOSITORIES_METADATA_NAME":"pio_meta","PIO_FS_BASEDIR":"/home/ec2-user/.pio_store","PIO_STORAGE_SOURCES_ELASTICSEARCH_HOSTS":"localhost","PIO_STORAGE_SOURCES_HBASE_HOME":"/home/ec2-user/PredictionIO-0.9.6/vendors/hbase-1.0.0","PIO_HOME":"/home/ec2-user/PredictionIO-0.9.6","PIO_FS_ENGINESDIR":"/home/ec2-user/.pio_store/engines","PIO_STORAGE_SOURCES_LOCALFS_PATH":"/home/ec2-user/.pio_store/models","PIO_STORAGE_SOURCES_ELASTICSEARCH_TYPE":"elasticsearch","PIO_STORAGE_REPOSITORIES_METADATA_SOURCE":"ELASTICSEARCH","PIO_STORAGE_REPOSITORIES_MODELDATA_SOURCE":"LOCALFS","PIO_STORAGE_REPOSITORIES_EVENTDATA_NAME":"pio_event","PIO_STORAGE_SOURCES_ELASTICSEARCH_HOME":"/home/ec2-user/PredictionIO-0.9.6/vendors/elasticsearch-1.4.4","PIO_FS_TMPDIR":"/home/ec2-user/.pio_store/tmp","PIO_STORAGE_REPOSITORIES_MODELDATA_NAME":"pio_model","PIO_STORAGE_REPOSITORIES_EVENTDATA_SOURCE":"HBASE","PIO_CONF_DIR":"/home/ec2-user/PredictionIO-0.9.6/conf","PIO_STORAGE_SOURCES_ELASTICSEARCH_PORTS":"9300","PIO_STORAGE_SOURCES_LOCALFS_TYPE":"localfs"},"sparkConf":{"spark.executor.extraClassPath":"."},"dataSourceParams":"{\"\":{\"appName\":\"mijeong\"}}","preparatorParams":"{\"\":{}}","algorithmsParams":"[{\"ecomm\":{\"appName\":\"mijeong\",\"unseenOnly\":true,\"seenEvents\":[\"buy\",\"view\",\"rate\"],\"similarEvents\":[\"view\"],\"rank\":10,\"numIterations\":10,\"lambda\":0.01,\"seed\":3}}]","servingParams":"{\"\":{}}"}]}
+2016-10-31 17:11:09,956 INFO  Remoting [sparkDriver-akka.actor.default-dispatcher-4] - Starting remoting
+2016-10-31 17:11:10,152 INFO  Remoting [sparkDriver-akka.actor.default-dispatcher-4] - Remoting started; listening on addresses :[akka.tcp://sparkDriver@172.31.27.227:42252]
+2016-10-31 17:11:10,810 WARN  org.apache.spark.metrics.MetricsSystem [main] - Using default name DAGScheduler for source because spark.app.id is not set.
+2016-10-31 17:11:11,176 INFO  io.prediction.controller.Engine$ [main] - EngineWorkflow.train
+2016-10-31 17:11:11,179 INFO  io.prediction.controller.Engine$ [main] - DataSource: org.template.ecommercerecommendation.DataSource@68e5c7ae
+2016-10-31 17:11:11,181 INFO  io.prediction.controller.Engine$ [main] - Preparator: org.template.ecommercerecommendation.Preparator@4b28a7bf
+2016-10-31 17:11:11,182 INFO  io.prediction.controller.Engine$ [main] - AlgorithmList: List(org.template.ecommercerecommendation.ECommAlgorithm@4d69d288)
+2016-10-31 17:11:11,182 INFO  io.prediction.controller.Engine$ [main] - Data sanity check is on.
+2016-10-31 17:11:13,702 INFO  io.prediction.controller.Engine$ [main] - org.template.ecommercerecommendation.TrainingData does not support data sanity check. Skipping check.
+2016-10-31 17:11:13,703 INFO  io.prediction.controller.Engine$ [main] - org.template.ecommercerecommendation.PreparedData does not support data sanity check. Skipping check.
+2016-10-31 17:11:16,790 WARN  com.github.fommil.netlib.BLAS [Executor task launch worker-0] - Failed to load implementation from: com.github.fommil.netlib.NativeSystemBLAS
+2016-10-31 17:11:16,791 WARN  com.github.fommil.netlib.BLAS [Executor task launch worker-0] - Failed to load implementation from: com.github.fommil.netlib.NativeRefBLAS
+2016-10-31 17:11:16,954 WARN  com.github.fommil.netlib.LAPACK [Executor task launch worker-1] - Failed to load implementation from: com.github.fommil.netlib.NativeSystemLAPACK
+2016-10-31 17:11:16,955 WARN  com.github.fommil.netlib.LAPACK [Executor task launch worker-1] - Failed to load implementation from: com.github.fommil.netlib.NativeRefLAPACK
+2016-10-31 17:11:19,039 INFO  io.prediction.controller.Engine$ [main] - org.template.ecommercerecommendation.ECommModel does not support data sanity check. Skipping check.
+2016-10-31 17:11:19,039 INFO  io.prediction.controller.Engine$ [main] - EngineWorkflow.train completed
+2016-10-31 17:11:19,041 INFO  io.prediction.controller.Engine [main] - engineInstanceId=
+2016-10-31 17:11:19,052 INFO  io.prediction.workflow.CoreWorkflow$ [main] - Inserting persistent model
+2016-10-31 17:11:19,190 INFO  io.prediction.workflow.CoreWorkflow$ [main] - Updating engine instance
+2016-10-31 17:11:19,218 ERROR io.prediction.data.storage.elasticsearch.ESEngineInstances [main] - [pio_meta][1] [engine_instances][]: document missing
+2016-10-31 17:11:19,218 INFO  io.prediction.workflow.CoreWorkflow$ [main] - Training completed successfully.
+2016-10-31 17:11:44,799 INFO  io.prediction.tools.Runner$ [main] - Submission command: /home/ec2-user/PredictionIO-0.9.6/vendors/spark-1.5.1-bin-hadoop2.6/bin/spark-submit --class io.prediction.workflow.CreateServer --jars file:/home/ec2-user/PIO-MukjaRecommendation/target/scala-2.10/template-scala-parallel-ecommercerecommendation_2.10-0.1-SNAPSHOT.jar,file:/home/ec2-user/PIO-MukjaRecommendation/target/scala-2.10/template-scala-parallel-ecommercerecommendation-assembly-0.1-SNAPSHOT-deps.jar --files file:/home/ec2-user/PredictionIO-0.9.6/conf/log4j.properties,file:/home/ec2-user/PredictionIO-0.9.6/vendors/hbase-1.0.0/conf/hbase-site.xml --driver-class-path /home/ec2-user/PredictionIO-0.9.6/conf:/home/ec2-user/PredictionIO-0.9.6/vendors/hbase-1.0.0/conf file:/home/ec2-user/PredictionIO-0.9.6/lib/pio-assembly-0.9.6.jar --engineInstanceId AVgaCHx3hyLKBIjSd2iK --engine-variant file:/home/ec2-user/PIO-MukjaRecommendation/engine.json --ip 0.0.0.0 --port 8000 --event-server-ip 0.0.0.0 --event-server-port 7070 --json-extractor Both --env PIO_STORAGE_SOURCES_HBASE_TYPE=hbase,PIO_ENV_LOADED=1,PIO_STORAGE_REPOSITORIES_METADATA_NAME=pio_meta,PIO_FS_BASEDIR=/home/ec2-user/.pio_store,PIO_STORAGE_SOURCES_ELASTICSEARCH_HOSTS=localhost,PIO_STORAGE_SOURCES_HBASE_HOME=/home/ec2-user/PredictionIO-0.9.6/vendors/hbase-1.0.0,PIO_HOME=/home/ec2-user/PredictionIO-0.9.6,PIO_FS_ENGINESDIR=/home/ec2-user/.pio_store/engines,PIO_STORAGE_SOURCES_LOCALFS_PATH=/home/ec2-user/.pio_store/models,PIO_STORAGE_SOURCES_ELASTICSEARCH_TYPE=elasticsearch,PIO_STORAGE_REPOSITORIES_METADATA_SOURCE=ELASTICSEARCH,PIO_STORAGE_REPOSITORIES_MODELDATA_SOURCE=LOCALFS,PIO_STORAGE_REPOSITORIES_EVENTDATA_NAME=pio_event,PIO_STORAGE_SOURCES_ELASTICSEARCH_HOME=/home/ec2-user/PredictionIO-0.9.6/vendors/elasticsearch-1.4.4,PIO_FS_TMPDIR=/home/ec2-user/.pio_store/tmp,PIO_STORAGE_REPOSITORIES_MODELDATA_NAME=pio_model,PIO_STORAGE_REPOSITORIES_EVENTDATA_SOURCE=HBASE,PIO_CONF_DIR=/home/ec2-user/PredictionIO-0.9.6/conf,PIO_STORAGE_SOURCES_ELASTICSEARCH_PORTS=9300,PIO_STORAGE_SOURCES_LOCALFS_TYPE=localfs
+2016-10-31 17:11:50,538 WARN  io.prediction.workflow.WorkflowUtils$ [pio-server-akka.actor.default-dispatcher-3] - Non-empty parameters supplied to org.template.ecommercerecommendation.Preparator, but its constructor does not accept any arguments. Stubbing with empty parameters.
+2016-10-31 17:11:51,087 WARN  io.prediction.workflow.WorkflowUtils$ [pio-server-akka.actor.default-dispatcher-3] - Non-empty parameters supplied to org.template.ecommercerecommendation.Serving, but its constructor does not accept any arguments. Stubbing with empty parameters.
+2016-10-31 17:11:51,984 INFO  Remoting [sparkDriver-akka.actor.default-dispatcher-6] - Starting remoting
+2016-10-31 17:11:52,181 INFO  Remoting [sparkDriver-akka.actor.default-dispatcher-6] - Remoting started; listening on addresses :[akka.tcp://sparkDriver@172.31.27.227:43820]
+2016-10-31 17:11:52,978 WARN  org.apache.spark.metrics.MetricsSystem [pio-server-akka.actor.default-dispatcher-3] - Using default name DAGScheduler for source because spark.app.id is not set.
+2016-10-31 17:11:53,328 INFO  io.prediction.controller.Engine [pio-server-akka.actor.default-dispatcher-3] - Using persisted model
+2016-10-31 17:11:53,337 INFO  io.prediction.controller.Engine [pio-server-akka.actor.default-dispatcher-3] - Loaded model org.template.ecommercerecommendation.ECommModel for algorithm org.template.ecommercerecommendation.ECommAlgorithm
+2016-10-31 17:11:53,604 INFO  io.prediction.workflow.MasterActor [pio-server-akka.actor.default-dispatcher-4] - Undeploying any existing engine instance at https://0.0.0.0:8000
+2016-10-31 17:11:53,666 WARN  io.prediction.workflow.MasterActor [pio-server-akka.actor.default-dispatcher-4] - Nothing at https://0.0.0.0:8000
+2016-10-31 17:11:54,700 INFO  spray.can.server.HttpListener [pio-server-akka.actor.default-dispatcher-2] - Bound to /0.0.0.0:8000
+2016-10-31 17:11:54,701 INFO  io.prediction.workflow.MasterActor [pio-server-akka.actor.default-dispatcher-2] - Engine is deployed and running. Engine API is live at https://0.0.0.0:8000.
+2016-10-31 17:14:34,397 ERROR spray.can.server.HttpServerConnection [pio-server-akka.actor.default-dispatcher-8] - Aborting encrypted connection to /127.0.0.1:34494 due to [SSLException:Unrecognized SSL message, plaintext connection?]
+2016-10-31 17:15:00,180 ERROR io.prediction.data.store.Common$ [ForkJoinPool-2-worker-3] - Invalid app name juwonApp
+2016-10-31 17:15:00,181 ERROR org.template.ecommercerecommendation.ECommAlgorithm [ForkJoinPool-2-worker-3] - Error when read seen events: java.lang.IllegalArgumentException: Invalid app name juwonApp
+2016-10-31 17:15:00,183 ERROR io.prediction.workflow.ServerActor [pio-server-akka.actor.default-dispatcher-14] - Query:
+{ "user": "u1", "num": 4 }
+
+Stack Trace:
+java.lang.IllegalArgumentException: Invalid app name juwonApp
+	at io.prediction.data.store.Common$$anonfun$appNameToId$2.apply(Common.scala:47)
+	at io.prediction.data.store.Common$$anonfun$appNameToId$2.apply(Common.scala:45)
+	at scala.Option.getOrElse(Option.scala:120)
+	at io.prediction.data.store.Common$.appNameToId(Common.scala:45)
+	at io.prediction.data.store.LEventStore$.findByEntity(LEventStore.scala:72)
+	at org.template.ecommercerecommendation.ECommAlgorithm.liftedTree1$1(ECommAlgorithm.scala:328)
+	at org.template.ecommercerecommendation.ECommAlgorithm.genBlackList(ECommAlgorithm.scala:327)
+	at org.template.ecommercerecommendation.ECommAlgorithm.predict(ECommAlgorithm.scala:257)
+	at org.template.ecommercerecommendation.ECommAlgorithm.predict(ECommAlgorithm.scala:62)
+	at io.prediction.controller.P2LAlgorithm.predictBase(P2LAlgorithm.scala:70)
+	at io.prediction.workflow.ServerActor$$anonfun$24$$anonfun$25.apply(CreateServer.scala:536)
+	at io.prediction.workflow.ServerActor$$anonfun$24$$anonfun$25.apply(CreateServer.scala:535)
+	at scala.collection.TraversableLike$$anonfun$map$1.apply(TraversableLike.scala:244)
+	at scala.collection.TraversableLike$$anonfun$map$1.apply(TraversableLike.scala:244)
+	at scala.collection.immutable.List.foreach(List.scala:318)
+	at scala.collection.TraversableLike$class.map(TraversableLike.scala:244)
+	at scala.collection.AbstractTraversable.map(Traversable.scala:105)
+	at io.prediction.workflow.ServerActor$$anonfun$24.apply(CreateServer.scala:535)
+	at io.prediction.workflow.ServerActor$$anonfun$24.apply(CreateServer.scala:513)
+	at spray.routing.ApplyConverterInstances$$anon$22$$anonfun$apply$1.apply(ApplyConverterInstances.scala:25)
+	at spray.routing.ApplyConverterInstances$$anon$22$$anonfun$apply$1.apply(ApplyConverterInstances.scala:24)
+	at spray.routing.ConjunctionMagnet$$anon$1$$anon$2$$anonfun$happly$1$$anonfun$apply$1.apply(Directive.scala:38)
+	at spray.routing.ConjunctionMagnet$$anon$1$$anon$2$$anonfun$happly$1$$anonfun$apply$1.apply(Directive.scala:37)
+	at spray.routing.directives.BasicDirectives$$anon$1.happly(BasicDirectives.scala:26)
+	at spray.routing.ConjunctionMagnet$$anon$1$$anon$2$$anonfun$happly$1.apply(Directive.scala:37)
+	at spray.routing.ConjunctionMagnet$$anon$1$$anon$2$$anonfun$happly$1.apply(Directive.scala:36)
+	at spray.routing.directives.BasicDirectives$$anon$2.happly(BasicDirectives.scala:79)
+	at spray.routing.Directive$$anon$7$$anonfun$happly$4.apply(Directive.scala:86)
+	at spray.routing.Directive$$anon$7$$anonfun$happly$4.apply(Directive.scala:86)
+	at spray.routing.directives.BasicDirectives$$anon$3$$anonfun$happly$1.apply(BasicDirectives.scala:92)
+	at spray.routing.directives.BasicDirectives$$anon$3$$anonfun$happly$1.apply(BasicDirectives.scala:92)
+	at spray.routing.directives.ExecutionDirectives$$anonfun$detach$1$$anonfun$apply$7$$anonfun$apply$3.apply$mcV$sp(ExecutionDirectives.scala:89)
+	at spray.routing.directives.ExecutionDirectives$$anonfun$detach$1$$anonfun$apply$7$$anonfun$apply$3.apply(ExecutionDirectives.scala:89)
+	at spray.routing.directives.ExecutionDirectives$$anonfun$detach$1$$anonfun$apply$7$$anonfun$apply$3.apply(ExecutionDirectives.scala:89)
+	at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24)
+	at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24)
+	at scala.concurrent.impl.ExecutionContextImpl$$anon$3.exec(ExecutionContextImpl.scala:107)
+	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)
+	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)
+	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)
+	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)
+
+
+
+2016-10-31 17:15:20,185 INFO  io.prediction.tools.console.Console$ [main] - Using existing engine manifest JSON at /home/ec2-user/PIO-MukjaRecommendation/manifest.json
+2016-10-31 17:15:20,273 INFO  io.prediction.tools.console.Console$ [main] - Using command '/home/ec2-user/PredictionIO-0.9.6/sbt/sbt' at the current working directory to build.
+2016-10-31 17:15:20,273 INFO  io.prediction.tools.console.Console$ [main] - If the path above is incorrect, this process will fail.
+2016-10-31 17:15:20,274 INFO  io.prediction.tools.console.Console$ [main] - Uber JAR disabled. Making sure lib/pio-assembly-0.9.6.jar is absent.
+2016-10-31 17:15:20,274 INFO  io.prediction.tools.console.Console$ [main] - Going to run: /home/ec2-user/PredictionIO-0.9.6/sbt/sbt  package assemblyPackageDependency
+2016-10-31 17:15:21,130 DEBUG io.prediction.workflow.UpgradeCheckRunner [Thread-0] - java.net.UnknownHostException: {e.getMessage}
+2016-10-31 17:15:27,439 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[0minfo[0m] [0mLoading project definition from /home/ec2-user/PIO-MukjaRecommendation/project[0m
+2016-10-31 17:15:29,426 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[0minfo[0m] [0mSet current project to template-scala-parallel-ecommercerecommendation (in build file:/home/ec2-user/PIO-MukjaRecommendation/)[0m
+2016-10-31 17:15:31,122 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[33mwarn[0m] [0mNo main class detected[0m
+2016-10-31 17:15:31,164 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[32msuccess[0m] [0mTotal time: 1 s, completed 2016. 10. 31 오후 5:15:31[0m
+2016-10-31 17:15:31,684 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[33mwarn[0m] [0mNo main class detected[0m
+2016-10-31 17:15:32,045 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[0minfo[0m] [0mIncluding from cache: scala-library.jar[0m
+2016-10-31 17:15:32,268 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[0minfo[0m] [0m[36mRun completed in 81 milliseconds.[0m[0m
+2016-10-31 17:15:32,268 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[0minfo[0m] [0m[36mTotal number of tests run: 0[0m[0m
+2016-10-31 17:15:32,268 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[0minfo[0m] [0m[36mSuites: completed 0, aborted 0[0m[0m
+2016-10-31 17:15:32,269 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[0minfo[0m] [0m[36mTests: succeeded 0, failed 0, canceled 0, ignored 0, pending 0[0m[0m
+2016-10-31 17:15:32,269 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[0minfo[0m] [0m[33mNo tests were executed.[0m[0m
+2016-10-31 17:15:32,274 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[0minfo[0m] [0mChecking every *.class/*.jar file's SHA-1.[0m
+2016-10-31 17:15:32,336 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[0minfo[0m] [0mMerging files...[0m
+2016-10-31 17:15:33,025 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[33mwarn[0m] [0mMerging 'META-INF/MANIFEST.MF' with strategy 'discard'[0m
+2016-10-31 17:15:33,122 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[33mwarn[0m] [0mStrategy 'discard' was applied to a file[0m
+2016-10-31 17:15:33,271 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[0minfo[0m] [0mAssembly up to date: /home/ec2-user/PIO-MukjaRecommendation/target/scala-2.10/template-scala-parallel-ecommercerecommendation-assembly-0.1-SNAPSHOT-deps.jar[0m
+2016-10-31 17:15:33,281 INFO  io.prediction.tools.console.Console$ [Thread-2] - [0m[[32msuccess[0m] [0mTotal time: 2 s, completed 2016. 10. 31 오후 5:15:33[0m
+2016-10-31 17:15:33,325 INFO  io.prediction.tools.console.Console$ [main] - Build finished successfully.
+2016-10-31 17:15:33,325 INFO  io.prediction.tools.console.Console$ [main] - Looking for an engine...
+2016-10-31 17:15:33,349 INFO  io.prediction.tools.console.Console$ [main] - Found template-scala-parallel-ecommercerecommendation_2.10-0.1-SNAPSHOT.jar
+2016-10-31 17:15:33,349 INFO  io.prediction.tools.console.Console$ [main] - Found template-scala-parallel-ecommercerecommendation-assembly-0.1-SNAPSHOT-deps.jar
+2016-10-31 17:15:34,584 INFO  org.elasticsearch.plugins [main] - [Maxwell Dillon] loaded [], sites []
+2016-10-31 17:15:35,622 INFO  io.prediction.tools.RegisterEngine$ [main] - Registering engine rHpMWBgRhwaOgWqb2Bv7l0PipdnYH8o6 6c981e817e32ba0314b43c74da30e53b003d78dc
+2016-10-31 17:15:35,674 INFO  io.prediction.tools.console.Console$ [main] - Your engine is ready for training.
+2016-10-31 17:15:42,381 INFO  io.prediction.tools.console.Console$ [main] - Using existing engine manifest JSON at /home/ec2-user/PIO-MukjaRecommendation/manifest.json
+2016-10-31 17:15:45,125 INFO  io.prediction.tools.Runner$ [main] - Submission command: /home/ec2-user/PredictionIO-0.9.6/vendors/spark-1.5.1-bin-hadoop2.6/bin/spark-submit --class io.prediction.workflow.CreateWorkflow --jars file:/home/ec2-user/PIO-MukjaRecommendation/target/scala-2.10/template-scala-parallel-ecommercerecommendation_2.10-0.1-SNAPSHOT.jar,file:/home/ec2-user/PIO-MukjaRecommendation/target/scala-2.10/template-scala-parallel-ecommercerecommendation-assembly-0.1-SNAPSHOT-deps.jar --files file:/home/ec2-user/PredictionIO-0.9.6/conf/log4j.properties,file:/home/ec2-user/PredictionIO-0.9.6/vendors/hbase-1.0.0/conf/hbase-site.xml --driver-class-path /home/ec2-user/PredictionIO-0.9.6/conf:/home/ec2-user/PredictionIO-0.9.6/vendors/hbase-1.0.0/conf file:/home/ec2-user/PredictionIO-0.9.6/lib/pio-assembly-0.9.6.jar --engine-id rHpMWBgRhwaOgWqb2Bv7l0PipdnYH8o6 --engine-version 6c981e817e32ba0314b43c74da30e53b003d78dc --engine-variant file:/home/ec2-user/PIO-MukjaRecommendation/engine.json --verbosity 0 --json-extractor Both --env PIO_STORAGE_SOURCES_HBASE_TYPE=hbase,PIO_ENV_LOADED=1,PIO_STORAGE_REPOSITORIES_METADATA_NAME=pio_meta,PIO_FS_BASEDIR=/home/ec2-user/.pio_store,PIO_STORAGE_SOURCES_ELASTICSEARCH_HOSTS=localhost,PIO_STORAGE_SOURCES_HBASE_HOME=/home/ec2-user/PredictionIO-0.9.6/vendors/hbase-1.0.0,PIO_HOME=/home/ec2-user/PredictionIO-0.9.6,PIO_FS_ENGINESDIR=/home/ec2-user/.pio_store/engines,PIO_STORAGE_SOURCES_LOCALFS_PATH=/home/ec2-user/.pio_store/models,PIO_STORAGE_SOURCES_ELASTICSEARCH_TYPE=elasticsearch,PIO_STORAGE_REPOSITORIES_METADATA_SOURCE=ELASTICSEARCH,PIO_STORAGE_REPOSITORIES_MODELDATA_SOURCE=LOCALFS,PIO_STORAGE_REPOSITORIES_EVENTDATA_NAME=pio_event,PIO_STORAGE_SOURCES_ELASTICSEARCH_HOME=/home/ec2-user/PredictionIO-0.9.6/vendors/elasticsearch-1.4.4,PIO_FS_TMPDIR=/home/ec2-user/.pio_store/tmp,PIO_STORAGE_REPOSITORIES_MODELDATA_NAME=pio_model,PIO_STORAGE_REPOSITORIES_EVENTDATA_SOURCE=HBASE,PIO_CONF_DIR=/home/ec2-user/PredictionIO-0.9.6/conf,PIO_STORAGE_SOURCES_ELASTICSEARCH_PORTS=9300,PIO_STORAGE_SOURCES_LOCALFS_TYPE=localfs
+2016-10-31 17:15:48,711 INFO  io.prediction.controller.Engine [main] - Extracting datasource params...
+2016-10-31 17:15:48,837 INFO  io.prediction.workflow.WorkflowUtils$ [main] - No 'name' is found. Default empty String will be used.
+2016-10-31 17:15:48,858 INFO  io.prediction.controller.Engine [main] - Datasource params: (,DataSourceParams(mijeong))
+2016-10-31 17:15:48,859 INFO  io.prediction.controller.Engine [main] - Extracting preparator params...
+2016-10-31 17:15:48,861 INFO  io.prediction.controller.Engine [main] - Preparator params: (,Empty)
+2016-10-31 17:15:49,212 INFO  io.prediction.controller.Engine [main] - Extracting serving params...
+2016-10-31 17:15:49,213 INFO  io.prediction.controller.Engine [main] - Serving params: (,Empty)
+2016-10-31 17:15:53,113 INFO  Remoting [sparkDriver-akka.actor.default-dispatcher-5] - Starting remoting
+2016-10-31 17:15:53,378 INFO  Remoting [sparkDriver-akka.actor.default-dispatcher-2] - Remoting started; listening on addresses :[akka.tcp://sparkDriver@172.31.27.227:41858]
+2016-10-31 17:15:54,536 WARN  org.apache.spark.metrics.MetricsSystem [main] - Using default name DAGScheduler for source because spark.app.id is not set.
+2016-10-31 17:15:55,060 INFO  io.prediction.controller.Engine$ [main] - EngineWorkflow.train
+2016-10-31 17:15:55,076 INFO  io.prediction.controller.Engine$ [main] - DataSource: org.template.ecommercerecommendation.DataSource@65593327
+2016-10-31 17:15:55,079 INFO  io.prediction.controller.Engine$ [main] - Preparator: org.template.ecommercerecommendation.Preparator@6744707b
+2016-10-31 17:15:55,082 INFO  io.prediction.controller.Engine$ [main] - AlgorithmList: List(org.template.ecommercerecommendation.ECommAlgorithm@96abc76)
+2016-10-31 17:15:55,083 INFO  io.prediction.controller.Engine$ [main] - Data sanity check is on.
+2016-10-31 17:15:59,053 INFO  io.prediction.controller.Engine$ [main] - org.template.ecommercerecommendation.TrainingData does not support data sanity check. Skipping check.
+2016-10-31 17:15:59,058 INFO  io.prediction.controller.Engine$ [main] - org.template.ecommercerecommendation.PreparedData does not support data sanity check. Skipping check.
+2016-10-31 17:16:03,633 INFO  io.prediction.tools.console.App$ [main] -                 Name |   ID |                                                       Access Key | Allowed Event(s)
+2016-10-31 17:16:03,683 INFO  io.prediction.tools.console.App$ [main] -              Android |   26 | Wl_qIIHjGfIgDX1L84jqXHQ3ZFLVxb4ejV3Fz6GX4vRzEf7noPO1DxDFfFJJB8mJ | (all)
+2016-10-31 17:16:03,726 INFO  io.prediction.tools.console.App$ [main] -                juown |   34 | vje-u-ykRRXrXHb5gLmN7hwbUjrbGScPG-e64AL7Qkq2h8cVRQKQ1-ubH_kIqrao | (all)
+2016-10-31 17:16:03,731 INFO  io.prediction.tools.console.App$ [main] -              mijeong |   38 | dwly5NGrFJjfuE59tbLkX9eCFhhRWxWttQR6E34tpIMfhsnbDcu2V9Pgyo5ytxUt | (all)
+2016-10-31 17:16:03,734 INFO  io.prediction.tools.console.App$ [main] -                 rec3 |   36 | -7upb7gMb-OMsSOIHJn-s6onoKDT4Qc98vhinrxuO8z1Z2pWZR_YmSRRVDkw8cD2 | (all)
+2016-10-31 17:16:03,736 INFO  io.prediction.tools.console.App$ [main] - Finished listing 8 app(s).
+2016-10-31 17:16:06,324 WARN  com.github.fommil.netlib.BLAS [Executor task launch worker-2] - Failed to load implementation from: com.github.fommil.netlib.NativeSystemBLAS
+2016-10-31 17:16:06,325 WARN  com.github.fommil.netlib.BLAS [Executor task launch worker-2] - Failed to load implementation from: com.github.fommil.netlib.NativeRefBLAS
+2016-10-31 17:16:06,509 WARN  com.github.fommil.netlib.LAPACK [Executor task launch worker-2] - Failed to load implementation from: com.github.fommil.netlib.NativeSystemLAPACK
+2016-10-31 17:16:06,515 WARN  com.github.fommil.netlib.LAPACK [Executor task launch worker-2] - Failed to load implementation from: com.github.fommil.netlib.NativeRefLAPACK
+2016-10-31 17:16:09,254 INFO  io.prediction.controller.Engine$ [main] - org.template.ecommercerecommendation.ECommModel does not support data sanity check. Skipping check.
+2016-10-31 17:16:09,255 INFO  io.prediction.controller.Engine$ [main] - EngineWorkflow.train completed
+2016-10-31 17:16:09,256 INFO  io.prediction.controller.Engine [main] - engineInstanceId=AVgbvXdASIQpG1moi7eV
+2016-10-31 17:16:09,330 INFO  io.prediction.workflow.CoreWorkflow$ [main] - Inserting persistent model
+2016-10-31 17:16:09,615 INFO  io.prediction.workflow.CoreWorkflow$ [main] - Updating engine instance
+2016-10-31 17:16:09,639 INFO  io.prediction.workflow.CoreWorkflow$ [main] - Training completed successfully.
+2016-10-31 17:16:16,858 INFO  io.prediction.tools.Runner$ [main] - Submission command: /home/ec2-user/PredictionIO-0.9.6/vendors/spark-1.5.1-bin-hadoop2.6/bin/spark-submit --class io.prediction.workflow.CreateServer --jars file:/home/ec2-user/PIO-MukjaRecommendation/target/scala-2.10/template-scala-parallel-ecommercerecommendation_2.10-0.1-SNAPSHOT.jar,file:/home/ec2-user/PIO-MukjaRecommendation/target/scala-2.10/template-scala-parallel-ecommercerecommendation-assembly-0.1-SNAPSHOT-deps.jar --files file:/home/ec2-user/PredictionIO-0.9.6/conf/log4j.properties,file:/home/ec2-user/PredictionIO-0.9.6/vendors/hbase-1.0.0/conf/hbase-site.xml --driver-class-path /home/ec2-user/PredictionIO-0.9.6/conf:/home/ec2-user/PredictionIO-0.9.6/vendors/hbase-1.0.0/conf file:/home/ec2-user/PredictionIO-0.9.6/lib/pio-assembly-0.9.6.jar --engineInstanceId AVgbvXdASIQpG1moi7eV --engine-variant file:/home/ec2-user/PIO-MukjaRecommendation/engine.json --ip 0.0.0.0 --port 8000 --event-server-ip 0.0.0.0 --event-server-port 7070 --json-extractor Both --env PIO_STORAGE_SOURCES_HBASE_TYPE=hbase,PIO_ENV_LOADED=1,PIO_STORAGE_REPOSITORIES_METADATA_NAME=pio_meta,PIO_FS_BASEDIR=/home/ec2-user/.pio_store,PIO_STORAGE_SOURCES_ELASTICSEARCH_HOSTS=localhost,PIO_STORAGE_SOURCES_HBASE_HOME=/home/ec2-user/PredictionIO-0.9.6/vendors/hbase-1.0.0,PIO_HOME=/home/ec2-user/PredictionIO-0.9.6,PIO_FS_ENGINESDIR=/home/ec2-user/.pio_store/engines,PIO_STORAGE_SOURCES_LOCALFS_PATH=/home/ec2-user/.pio_store/models,PIO_STORAGE_SOURCES_ELASTICSEARCH_TYPE=elasticsearch,PIO_STORAGE_REPOSITORIES_METADATA_SOURCE=ELASTICSEARCH,PIO_STORAGE_REPOSITORIES_MODELDATA_SOURCE=LOCALFS,PIO_STORAGE_REPOSITORIES_EVENTDATA_NAME=pio_event,PIO_STORAGE_SOURCES_ELASTICSEARCH_HOME=/home/ec2-user/PredictionIO-0.9.6/vendors/elasticsearch-1.4.4,PIO_FS_TMPDIR=/home/ec2-user/.pio_store/tmp,PIO_STORAGE_REPOSITORIES_MODELDATA_NAME=pio_model,PIO_STORAGE_REPOSITORIES_EVENTDATA_SOURCE=HBASE,PIO_CONF_DIR=/home/ec2-user/PredictionIO-0.9.6/conf,PIO_STORAGE_SOURCES_ELASTICSEARCH_PORTS=9300,PIO_STORAGE_SOURCES_LOCALFS_TYPE=localfs
+2016-10-31 17:16:20,277 WARN  io.prediction.workflow.WorkflowUtils$ [pio-server-akka.actor.default-dispatcher-5] - Non-empty parameters supplied to org.template.ecommercerecommendation.Preparator, but its constructor does not accept any arguments. Stubbing with empty parameters.
+2016-10-31 17:16:20,733 WARN  io.prediction.workflow.WorkflowUtils$ [pio-server-akka.actor.default-dispatcher-5] - Non-empty parameters supplied to org.template.ecommercerecommendation.Serving, but its constructor does not accept any arguments. Stubbing with empty parameters.
+2016-10-31 17:16:21,607 INFO  Remoting [sparkDriver-akka.actor.default-dispatcher-4] - Starting remoting
+2016-10-31 17:16:21,790 INFO  Remoting [sparkDriver-akka.actor.default-dispatcher-4] - Remoting started; listening on addresses :[akka.tcp://sparkDriver@172.31.27.227:37768]
+2016-10-31 17:16:22,609 WARN  org.apache.spark.metrics.MetricsSystem [pio-server-akka.actor.default-dispatcher-5] - Using default name DAGScheduler for source because spark.app.id is not set.
+2016-10-31 17:16:22,959 INFO  io.prediction.controller.Engine [pio-server-akka.actor.default-dispatcher-5] - Using persisted model
+2016-10-31 17:16:22,962 INFO  io.prediction.controller.Engine [pio-server-akka.actor.default-dispatcher-5] - Loaded model org.template.ecommercerecommendation.ECommModel for algorithm org.template.ecommercerecommendation.ECommAlgorithm
+2016-10-31 17:16:23,223 INFO  io.prediction.workflow.MasterActor [pio-server-akka.actor.default-dispatcher-4] - Undeploying any existing engine instance at https://0.0.0.0:8000
+2016-10-31 17:16:23,293 WARN  io.prediction.workflow.MasterActor [pio-server-akka.actor.default-dispatcher-4] - Nothing at https://0.0.0.0:8000
+2016-10-31 17:16:24,225 INFO  spray.can.server.HttpListener [pio-server-akka.actor.default-dispatcher-5] - Bound to /0.0.0.0:8000
+2016-10-31 17:16:24,226 INFO  io.prediction.workflow.MasterActor [pio-server-akka.actor.default-dispatcher-5] - Engine is deployed and running. Engine API is live at https://0.0.0.0:8000.

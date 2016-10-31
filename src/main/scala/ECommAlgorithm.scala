@@ -65,8 +65,8 @@ class ECommAlgorithm(val ap: ECommAlgorithmParams)
   @transient lazy val logger = Logger[this.type]
 
   def train(sc: SparkContext, data: PreparedData): ECommModel = {
-    require(!data.viewEvents.take(1).isEmpty,
-      s"viewEvents in PreparedData cannot be empty." +
+    require(!data.rvEvents.take(1).isEmpty,
+      s"rateviewEvents in PreparedData cannot be empty." +
       " Please check if DataSource generates TrainingData" +
       " and Preprator generates PreparedData correctly.")
     require(!data.users.take(1).isEmpty,
@@ -150,11 +150,13 @@ class ECommAlgorithm(val ap: ECommAlgorithmParams)
     itemStringIntMap: BiMap[String, Int],
     data: PreparedData): RDD[MLlibRating] = {
 
-    val mllibRatings = data.viewEvents
+    val mllibRatings = data.rvEvents
       .map { r =>
         // Convert user and item String IDs to Int index for MLlib
         val uindex = userStringIntMap.getOrElse(r.user, -1)
         val iindex = itemStringIntMap.getOrElse(r.item, -1)
+        var rv = 1;
+        // rate : 1 . view = 2
 
         if (uindex == -1)
           logger.info(s"Couldn't convert nonexistent user ID ${r.user}"
@@ -164,22 +166,48 @@ class ECommAlgorithm(val ap: ECommAlgorithmParams)
           logger.info(s"Couldn't convert nonexistent item ID ${r.item}"
             + " to Int index.")
 
-        ((uindex, iindex), 1)
+        if(r.rating == 99)
+          rv = 2
+
+        ((uindex, iindex, rv), (r.rating, r.t))
       }
-      .filter { case ((u, i), v) =>
+      .filter { case ((u, i, rv), v) =>
         // keep events with valid user and item index
         (u != -1) && (i != -1)
       }
-      .reduceByKey(_ + _) // aggregate all view events of same user-item pair
-      .map { case ((u, i), v) =>
-        // MLlibRating requires integer index for user and item
-        MLlibRating(u, i, v)
+      .reduceByKey { case (v1, v2) => // MODIFIED
+        // if a user may rate same item with different value at different times,
+        // use the latest value for this case.
+        // Can remove this reduceByKey() if no need to support this case.
+        val (rating1, t1) = v1
+        val (rating2, t2) = v2
+        // keep the latest value
+
+        //view 일때
+        if(rating1 == 99 || rating2 == 99) {
+          ((rating1+rating2),t1)
+        }else { //rate 일때
+          if (t1 > t2) v1 else v2
+        }
       }
-      .cache()
+      .map { case ((u, i, rv), (rating, t)) =>
+
+        var result = 0.0
+
+        if(rv==2)
+          result = rating/99;
+        else
+          result = rating * rating;
+        ((u, i), result) }
+      .reduceByKey(_*_)
+      .map { case ((u, i), rating) => // MODIFIED
+        // MLlibRating requires integer index for user and item
+        MLlibRating(u, i, rating) // MODIFIED
+      }.cache()
 
     mllibRatings
   }
-
+    
   /** Train default model.
     * You may customize this function if use different events or
     * need different ways to count "popular" score or return default score for item.

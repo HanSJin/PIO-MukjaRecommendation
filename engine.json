@@ -4,19 +4,19 @@
   "engineFactory": "org.template.ecommercerecommendation.ECommerceRecommendationEngine",
   "datasource": {
     "params" : {
-      "appName": "juwonApp"
+      "appName": "mijeong"
     }
   },
   "algorithms": [
     {
       "name": "ecomm",
       "params": {
-        "appName": "juwonApp",
+        "appName": "mijeong",
         "unseenOnly": true,
         "seenEvents": ["buy", "view", "rate"],
         "similarEvents": ["view"],
         "rank": 10,
-        "numIterations" : 20,
+        "numIterations" : 10,
         "lambda": 0.01,
         "seed": 3
       }
