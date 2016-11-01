@@ -20526,3 +20526,9 @@ java.net.BindException: 주소가 이미 사용 중입니다
 2016-11-01 07:32:26,951 INFO  spray.can.server.HttpListener [pio-server-akka.actor.default-dispatcher-3] - Bound to /0.0.0.0:8000
 2016-11-01 07:32:26,953 INFO  io.prediction.workflow.MasterActor [pio-server-akka.actor.default-dispatcher-3] - Engine is deployed and running. Engine API is live at https://0.0.0.0:8000.
 2016-11-01 07:32:41,003 ERROR spray.can.server.HttpServerConnection [pio-server-akka.actor.default-dispatcher-4] - Aborting encrypted connection to /127.0.0.1:39818 due to [SSLException:Unrecognized SSL message, plaintext connection?]
+2016-11-01 07:36:22,214 ERROR spray.can.server.HttpServerConnection [pio-server-akka.actor.default-dispatcher-5] - Aborting encrypted connection to /61.43.139.4:62992 due to [SSLException:Unrecognized SSL message, plaintext connection?]
+2016-11-01 07:36:22,341 ERROR spray.can.server.HttpServerConnection [pio-server-akka.actor.default-dispatcher-15] - Aborting encrypted connection to /61.43.139.4:62991 due to [SSLException:Unrecognized SSL message, plaintext connection?]
+2016-11-01 07:36:22,435 ERROR spray.can.server.HttpServerConnection [pio-server-akka.actor.default-dispatcher-14] - Aborting encrypted connection to /61.43.139.4:62993 due to [SSLException:Unrecognized SSL message, plaintext connection?]
+2016-11-01 07:36:27,536 ERROR spray.can.server.HttpServerConnection [pio-server-akka.actor.default-dispatcher-19] - Aborting encrypted connection to /61.43.139.4:63076 due to [SSLException:Unrecognized SSL message, plaintext connection?]
+2016-11-01 07:49:14,644 INFO  io.prediction.workflow.MasterActor [pio-server-akka.actor.default-dispatcher-47] - Stop server command received.
+2016-11-01 07:49:14,644 INFO  io.prediction.workflow.MasterActor [pio-server-akka.actor.default-dispatcher-47] - Server is shutting down.
