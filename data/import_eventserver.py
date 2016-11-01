@@ -53,6 +53,7 @@ def import_events(client):
         target_entity_id=rated_item,
         properties= { "rating" : float(random.uniform(0.5, 5.0)) }
       )
+      print "User", user_id ,"views item", rated_item
       client.create_event(
 	      event="view",
 	      entity_type="user",
@@ -63,9 +64,9 @@ def import_events(client):
       count += 1
       # randomly buy some of the viewed items
       if random.choice([True, False]):
-        print "User", user_id ,"buys item", rated_item
+        print "User", user_id ,"likes item", rated_item
         client.create_event(
-          event="buy",
+          event="like",
           entity_type="user",
           entity_id=user_id,
           target_entity_type="item",

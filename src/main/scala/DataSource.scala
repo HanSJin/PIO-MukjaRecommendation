@@ -6,11 +6,9 @@ import io.prediction.controller.EmptyActualResult
 import io.prediction.controller.Params
 import io.prediction.data.storage.Event
 import io.prediction.data.store.PEventStore
-
 import org.apache.spark.SparkContext
 import org.apache.spark.SparkContext._
 import org.apache.spark.rdd.RDD
-
 import grizzled.slf4j.Logger
 
 case class DataSourceParams(appName: String) extends Params
@@ -62,12 +60,29 @@ class DataSource(val dsp: DataSourceParams)
     val eventsRDD: RDD[Event] = PEventStore.find(
       appName = dsp.appName,
       entityType = Some("user"),
-      eventNames = Some(List("view", "buy")),
+      eventNames = Some(List("view", "like","rate")),
       // targetEntityType is optional field of an event.
       targetEntityType = Some(Some("item")))(sc)
       .cache()
 
-/*
+    val rateEventsRDD: RDD[RateEvent] = eventsRDD
+      .filter { event => event.event == "rate" }
+      .map { event =>
+        try {
+          RateEvent(
+            user = event.entityId,
+            item = event.targetEntityId.get,
+            rating = event.properties.get[Double]("rating"), // ADDED
+            t = event.eventTime.getMillis
+          )
+        } catch {
+          case e: Exception =>
+            logger.error(s"Cannot convert ${event} to RateEvent." +
+              s" Exception: ${e}.")
+            throw e
+        }
+      }
+
     val viewEventsRDD: RDD[ViewEvent] = eventsRDD
       .filter { event => event.event == "view" }
       .map { event =>
@@ -84,53 +99,20 @@ class DataSource(val dsp: DataSourceParams)
             throw e
         }
       }
-      */
-      
-    // get all "user" "rate" "item" events
-    val rvEventsRDD: RDD[RVEvent] = PEventStore.find( // MODIFIED
-      appName = dsp.appName,
-      entityType = Some("user"),
-      eventNames = Some(List("view","rate")), // MODIFIED
-      // targetEntityType is optional field of an event.
-      targetEntityType = Some(Some("item")))(sc)
-      // eventsDb.find() returns RDD[Event]
-      .map { event =>
-      val rvEvent = try {
-        event.event match {
-          case "rate" => RVEvent( // MODIFIED
-            user = event.entityId,
-            item = event.targetEntityId.get,
-            rating = event.properties.get[Double]("rating"), // ADDED
-            t = event.eventTime.getMillis)
-          case "view" => RVEvent( // MODIFIED
-            user = event.entityId,
-            item = event.targetEntityId.get,
-            rating = 100,
-            t = event.eventTime.getMillis)
-          case _ => throw new Exception(s"Unexpected event ${event} is read.")
-        }
-      } catch {
-        case e: Exception => {
-          logger.error(s"Cannot convert ${event} to RateViewEvent." + // MODIFIED
-            s" Exception: ${e}.")
-          throw e
-        }
-      }
-      rvEvent
-    }.cache()
 
-    val buyEventsRDD: RDD[BuyEvent] = eventsRDD
-      .filter { event => event.event == "buy" }
+    val likeEventsRDD: RDD[LikeEvent] = eventsRDD
+      .filter { event => event.event == "like" | event.event == "cancel_like"}
       .map { event =>
         try {
-          BuyEvent(
+          LikeEvent(
             user = event.entityId,
             item = event.targetEntityId.get,
+            like = (event.event == "like"),
             t = event.eventTime.getMillis
           )
         } catch {
           case e: Exception =>
-            logger.error(s"Cannot convert ${event} to BuyEvent." +
+            logger.error(s"Cannot convert ${event} to LikeEvent." +
               s" Exception: ${e}.")
             throw e
         }
@@ -139,8 +121,9 @@ class DataSource(val dsp: DataSourceParams)
     new TrainingData(
       users = usersRDD,
       items = itemsRDD,
-      rvEvents = rvEventsRDD,
-      buyEvents = buyEventsRDD
+      viewEvents = viewEventsRDD,
+      rateEvents = rateEventsRDD,
+      likeEvents = likeEventsRDD
     )
   }
 }
@@ -149,20 +132,24 @@ case class User()
 
 case class Item(categories: Option[List[String]])
 
-case class RVEvent(user: String, item: String, rating: Double, t: Long)
+case class ViewEvent(user: String, item: String, t: Long)
 
-case class BuyEvent(user: String, item: String, t: Long)
+case class RateEvent(user: String, item: String, rating: Double, t: Long)
+
+case class LikeEvent(user: String, item: String, like: Boolean, t: Long)
 
 class TrainingData(
   val users: RDD[(String, User)],
   val items: RDD[(String, Item)],
-  val rvEvents: RDD[RVEvent],
-  val buyEvents: RDD[BuyEvent]
+  val viewEvents: RDD[ViewEvent],
+  val rateEvents: RDD[RateEvent],
+  val likeEvents: RDD[LikeEvent]
 ) extends Serializable {
   override def toString = {
     s"users: [${users.count()} (${users.take(2).toList}...)]" +
     s"items: [${items.count()} (${items.take(2).toList}...)]" +
-    s"rateviewEvents: [${rvEvents.count()}] (${rvEvents.take(2).toList}...)" +
-    s"buyEvents: [${buyEvents.count()}] (${buyEvents.take(2).toList}...)"
+    s"viewEvents: [${viewEvents.count()}] (${viewEvents.take(2).toList}...)" +
+    s"rateEvents: [${rateEvents.count()}] (${rateEvents.take(2).toList}...)" +
+    s"likeEvents: [${likeEvents.count()}] (${likeEvents.take(2).toList}...)"
   }
 }

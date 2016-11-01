@@ -33,7 +33,7 @@ case class ECommAlgorithmParams(
 case class ProductModel(
   item: Item,
   features: Option[Array[Double]], // features by ALS
-  count: Int // popular count for default score
+  count: Double // popular count for default score
 )
 
 class ECommModel(
@@ -65,10 +65,18 @@ class ECommAlgorithm(val ap: ECommAlgorithmParams)
   @transient lazy val logger = Logger[this.type]
 
   def train(sc: SparkContext, data: PreparedData): ECommModel = {
-    require(!data.rvEvents.take(1).isEmpty,
-      s"rateviewEvents in PreparedData cannot be empty." +
+    require(!data.viewEvents.take(1).isEmpty,
+      s"viewEvents in PreparedData cannot be empty." +
       " Please check if DataSource generates TrainingData" +
       " and Preprator generates PreparedData correctly.")
+    require(!data.rateEvents.take(1).isEmpty,
+      s"rateEvents in PreparedData cannot be empty." +
+        " Please check if DataSource generates TrainingData" +
+        " and Preprator generates PreparedData correctly.")
+    require(!data.likeEvents.take(1).isEmpty,
+      s"likeEvents in PreparedData cannot be empty." +
+        " Please check if DataSource generates TrainingData" +
+        " and Preprator generates PreparedData correctly.")
     require(!data.users.take(1).isEmpty,
       s"users in PreparedData cannot be empty." +
       " Please check if DataSource generates TrainingData" +
@@ -128,7 +136,7 @@ class ECommAlgorithm(val ap: ECommAlgorithmParams)
           item = item,
           features = features,
           // NOTE: use getOrElse because popularCount may not contain all items.
-          count = popularCount.getOrElse(index, 0)
+          count = popularCount.getOrElse(index, 0.0)
         )
         (index, pm)
       }
@@ -150,13 +158,12 @@ class ECommAlgorithm(val ap: ECommAlgorithmParams)
     itemStringIntMap: BiMap[String, Int],
     data: PreparedData): RDD[MLlibRating] = {
 
-    val mllibRatings = data.rvEvents
+    val v_mllibRatings = data.viewEvents
       .map { r =>
         // Convert user and item String IDs to Int index for MLlib
+        //입력 값 제대로 들어왔나 확인 후 이상있는 item이나 user값을 -1로 변경한다
         val uindex = userStringIntMap.getOrElse(r.user, -1)
         val iindex = itemStringIntMap.getOrElse(r.item, -1)
-        var rv = 1;
-        // rate : 1 . view = 2
 
         if (uindex == -1)
           logger.info(s"Couldn't convert nonexistent user ID ${r.user}"
@@ -166,12 +173,38 @@ class ECommAlgorithm(val ap: ECommAlgorithmParams)
           logger.info(s"Couldn't convert nonexistent item ID ${r.item}"
             + " to Int index.")
 
-        if(r.rating == 99)
-          rv = 2
-
-        ((uindex, iindex, rv), (r.rating, r.t))
+        ((uindex, iindex), 1.0)
       }
-      .filter { case ((u, i, rv), v) =>
+      .filter { case ((u, i), v) =>
+        // item이나 user값이 -1인 값들을 제외시킨다
+        // keep events with valid user and item index
+        (u != -1) && (i != -1)
+      }
+      .reduceByKey(_ + _) // aggregate all view events of same user-item pair //키가 같은 것 끼리 v값을 더함
+      .map { case ((u, i), v) =>
+      // MLlibRating requires integer index for user and item
+      //최종 값들 저장
+      ((u, i), v)
+    }
+      .cache()
+
+    val r_mllibRatings = data.rateEvents
+      .map { r =>
+        // Convert user and item String IDs to Int index for MLlib
+        val uindex = userStringIntMap.getOrElse(r.user, -1)
+        val iindex = itemStringIntMap.getOrElse(r.item, -1)
+
+        if (uindex == -1)
+          logger.info(s"Couldn't convert nonexistent user ID ${r.user}"
+            + " to Int index.")
+
+        if (iindex == -1)
+          logger.info(s"Couldn't convert nonexistent item ID ${r.item}"
+            + " to Int index.")
+
+        ((uindex, iindex), (r.rating, r.t))
+      }
+      .filter { case ((u, i), v) =>
         // keep events with valid user and item index
         (u != -1) && (i != -1)
       }
@@ -182,32 +215,51 @@ class ECommAlgorithm(val ap: ECommAlgorithmParams)
         val (rating1, t1) = v1
         val (rating2, t2) = v2
         // keep the latest value
-
-        //view 일때
-        if(rating1 == 99 || rating2 == 99) {
-          ((rating1+rating2),t1)
-        }else { //rate 일때
-          if (t1 > t2) v1 else v2
-        }
+        if (t1 > t2) v1 else v2
       }
-      .map { case ((u, i, rv), (rating, t)) =>
-
-        var result = 0.0
-
-        if(rv==2)
-          result = rating/99;
-        else
-          result = rating * rating;
-        ((u, i), result) }
-      .reduceByKey(_*_)
-      .map { case ((u, i), rating) => // MODIFIED
+      .map { case ((u, i), (rating,t)) => // MODIFIED
         // MLlibRating requires integer index for user and item
-        MLlibRating(u, i, rating) // MODIFIED
+        ((u, i), rating/2.5) // MODIFIED
       }.cache()
 
-    mllibRatings
+    val l_mllibRatings = data.likeEvents
+      .map { r =>
+        // Convert user and item String IDs to Int index for MLlib
+        val uindex = userStringIntMap.getOrElse(r.user, -1)
+        val iindex = itemStringIntMap.getOrElse(r.item, -1)
+
+        if (uindex == -1)
+          logger.info(s"Couldn't convert nonexistent user ID ${r.user}"
+            + " to Int index.")
+
+        if (iindex == -1)
+          logger.info(s"Couldn't convert nonexistent item ID ${r.item}"
+            + " to Int index.")
+
+        ((uindex, iindex), (r.like, r.t))
+      }.filter { case ((u, i), v) =>
+      (u != -1) && (i != -1)
+      }.reduceByKey { case (v1, v2) => // MODIFIED
+        val (like1, t1) = v1
+        val (like2, t2) = v2
+        if (t1 > t2) v1 else v2
+      }.map { case ((u, i), (like, t)) => // MODIFIED
+        val r = if (like) 5.0 else 0.0
+        ((u, i), r)
+      }.cache()
+
+    val sum_mllibRatings = v_mllibRatings.union(l_mllibRatings).reduceByKey(_ + _).cache()
+
+    val total_mllibRatings = sum_mllibRatings.union(r_mllibRatings).reduceByKey(_ * _)
+      .map { case ((u, i), v) =>
+        // MLlibRating은 user와 item에 대한 integer index를 필요로 함
+        MLlibRating(u, i, v)
+      }.cache()
+
+
+    total_mllibRatings
   }
-    
+
   /** Train default model.
     * You may customize this function if use different events or
     * need different ways to count "popular" score or return default score for item.
@@ -215,10 +267,10 @@ class ECommAlgorithm(val ap: ECommAlgorithmParams)
   def trainDefault(
     userStringIntMap: BiMap[String, Int],
     itemStringIntMap: BiMap[String, Int],
-    data: PreparedData): Map[Int, Int] = {
-    // count number of buys
+    data: PreparedData): Map[Int, Double] = {
+    // count number of likes
     // (item index, count)
-    val buyCountsRDD: RDD[(Int, Int)] = data.buyEvents
+    val viewCountsRDD: RDD[(Int, Double)] = data.viewEvents
       .map { r =>
         // Convert user and item String IDs to Int index
         val uindex = userStringIntMap.getOrElse(r.user, -1)
@@ -238,10 +290,73 @@ class ECommAlgorithm(val ap: ECommAlgorithmParams)
         // keep events with valid user and item index
         (u != -1) && (i != -1)
       }
-      .map { case (u, i, v) => (i, 1) } // key is item
-      .reduceByKey{ case (a, b) => a + b } // count number of items occurrence
+      .map { case (u, i, v) => (i, 1.0) } // key is item
+      .reduceByKey(_ + _) // count number of items occurrence
 
-    buyCountsRDD.collectAsMap.toMap
+    val rateCountsRDD: RDD[(Int, Double)] = data.rateEvents
+      .map { r =>
+        // Convert user and item String IDs to Int index
+        val uindex = userStringIntMap.getOrElse(r.user, -1)
+        val iindex = itemStringIntMap.getOrElse(r.item, -1)
+
+        if (uindex == -1)
+          logger.info(s"Couldn't convert nonexistent user ID ${r.user}"
+            + " to Int index.")
+
+        if (iindex == -1)
+          logger.info(s"Couldn't convert nonexistent item ID ${r.item}"
+            + " to Int index.")
+
+        ((uindex, iindex), (r.rating, r.t))
+      }
+      .filter { case ((u, i), v) =>
+        // keep events with valid user and item index
+        (u != -1) && (i != -1)
+      }
+      .reduceByKey { case (v1, v2) => // MODIFIED
+        val (rating1, t1) = v1
+        val (rating2, t2) = v2
+        // keep the latest value
+        if (t1 > t2) v1 else v2
+      }
+      .map { case ((u, i), (rating,t)) => (i, rating/2.5) } // key is item
+      .reduceByKey(_ + _) // count number of items occurrence
+
+    val likeCountsRDD: RDD[(Int, Double)] = data.likeEvents
+      .map { r =>
+        // Convert user and item String IDs to Int index
+        val uindex = userStringIntMap.getOrElse(r.user, -1)
+        val iindex = itemStringIntMap.getOrElse(r.item, -1)
+
+        if (uindex == -1)
+          logger.info(s"Couldn't convert nonexistent user ID ${r.user}"
+            + " to Int index.")
+
+        if (iindex == -1)
+          logger.info(s"Couldn't convert nonexistent item ID ${r.item}"
+            + " to Int index.")
+
+        ((uindex, iindex), (r.like, r.t))
+      }
+      .filter { case ((u, i), v) =>
+        (u != -1) && (i != -1)
+      }
+      .reduceByKey { case (v1, v2) => // MODIFIED
+        val (like1, t1) = v1
+        val (like2, t2) = v2
+        if (t1 > t2) v1 else v2
+      }
+      .map { case ((u, i), (like, t)) => // MODIFIED
+        val r = if (like) 5.0 else 0.0
+        (i, r)
+      }
+      .reduceByKey(_ + _)
+
+    val sum_eventsRDD: RDD[(Int, Double)] = viewCountsRDD.union(likeCountsRDD).reduceByKey(_ + _)
+
+    val resultRDD: RDD[(Int, Double)] = sum_eventsRDD.union(rateCountsRDD).reduceByKey(_ * _)
+
+    resultRDD.collectAsMap.toMap
   }
 
   def predict(model: ECommModel, query: Query): PredictedResult = {
