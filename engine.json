@@ -4,16 +4,16 @@
   "engineFactory": "org.template.ecommercerecommendation.ECommerceRecommendationEngine",
   "datasource": {
     "params" : {
-      "appName": "mijeong"
+      "appName": "MUKJA"
     }
   },
   "algorithms": [
     {
       "name": "ecomm",
       "params": {
-        "appName": "mijeong",
+        "appName": "MUKJA",
         "unseenOnly": true,
-        "seenEvents": ["buy", "view", "rate"],
+        "seenEvents": ["like", "view", "rate"],
         "similarEvents": ["view"],
         "rank": 10,
         "numIterations" : 10,
