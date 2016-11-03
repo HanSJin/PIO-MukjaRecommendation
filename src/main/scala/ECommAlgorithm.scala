@@ -412,7 +412,6 @@ class ECommAlgorithm(val ap: ECommAlgorithmParams)
           }
         print(s"recommand.")
 
-        //recommendation
         if (userFeature.isDefined) {
         // the user has feature vector
         predictKnownUser(
