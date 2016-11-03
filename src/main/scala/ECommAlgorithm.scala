@@ -373,8 +373,6 @@ class ECommAlgorithm(val ap: ECommAlgorithmParams)
       // convert seen Items list from String ID to interger Index
       .flatMap(x => model.itemStringIntMap.get(x))
 
-    //Option은 널값이 존재할 수도 있는 존재 -> isDefined은 null값이 아니면 true
-
       val topScores: Array[(Int, Double)] =  if (query.items.isDefined) {
         //logger.info(s"similar ${query.items}.")
         print(s"******similar 영역 안에 들어옴 ******")
