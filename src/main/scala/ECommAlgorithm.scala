@@ -373,53 +373,90 @@ class ECommAlgorithm(val ap: ECommAlgorithmParams)
       // convert seen Items list from String ID to interger Index
       .flatMap(x => model.itemStringIntMap.get(x))
 
-    val userFeature: Option[Array[Double]] =
-      model.userStringIntMap.get(query.user).flatMap { userIndex =>
-        userFeatures.get(userIndex)
-      }
+    //Option은 널값이 존재할 수도 있는 존재 -> isDefined은 null값이 아니면 true
 
-    val topScores: Array[(Int, Double)] = if (userFeature.isDefined) {
-      // the user has feature vector
-      predictKnownUser(
-        userFeature = userFeature.get,
-        productModels = productModels,
-        query = query,
-        whiteList = whiteList,
-        blackList = finalBlackList
-      )
-    } else {
-      // the user doesn't have feature vector.
-      // For example, new user is created after model is trained.
-      logger.info(s"No userFeature found for user ${query.user}.")
+      val topScores: Array[(Int, Double)] =  if (query.items.isDefined) {
+        //logger.info(s"similar ${query.items}.")
+        print(s"******similar 영역 안에 들어옴 ******")
 
-      // check if the user has recent events on some items
-      val recentItems: Set[String] = getRecentItems(query)
-      val recentList: Set[Int] = recentItems.flatMap (x =>
-        model.itemStringIntMap.get(x))
+        //recentItems과 동일한 버전
+        val queryList: Set[Int] = query.items.get.flatMap(x => model.itemStringIntMap.get(x))
 
-      val recentFeatures: Vector[Array[Double]] = recentList.toVector
-        // productModels may not contain the requested item
-        .map { i =>
+        val queryFeatures: Vector[Array[Double]] = queryList.toVector
+          // productModels may not contain the requested item
+          .map { i =>
           productModels.get(i).flatMap { pm => pm.features }
         }.flatten
 
-      if (recentFeatures.isEmpty) {
-        logger.info(s"No features vector for recent items ${recentItems}.")
-        predictDefault(
-          productModels = productModels,
-          query = query,
-          whiteList = whiteList,
-          blackList = finalBlackList
-        )
-      } else {
-        predictSimilar(
-          recentFeatures = recentFeatures,
-          productModels = productModels,
-          query = query,
-          whiteList = whiteList,
-          blackList = finalBlackList
-        )
+
+        if (queryFeatures.isEmpty) {
+          logger.info(s"No productFeatures vector for query items ${query.items}.")
+          print(s"******${query.items}. productFeatures X 없어요 ******")
+          Array[(Int, Double)]()
+        } else {
+          print(s"******${query.items}. productFeatures O 있어요 ******")
+          predictSimilar(
+            queryList = queryList,
+            queryFeatures = queryFeatures,
+            productModels = productModels,
+            query = query,
+            whiteList = whiteList,
+            blackList = finalBlackList
+          )
+        }
       }
+    else {
+        val userFeature: Option[Array[Double]] =
+          model.userStringIntMap.get(query.user).flatMap { userIndex =>
+            userFeatures.get(userIndex)
+          }
+        print(s"recommand.")
+
+        //recommendation
+        if (userFeature.isDefined) {
+        // the user has feature vector
+        predictKnownUser(
+          userFeature = userFeature.get,
+          productModels = productModels,
+          query = query,
+          whiteList = whiteList,
+          blackList = finalBlackList
+        )
+      } else
+      {
+        // the user doesn't have feature vector.
+        // For example, new user is created after model is trained.
+        logger.info(s"No userFeature found for user ${query.user}.")
+
+          // check if the user has recent events on some items
+          val recentItems: Set[String] = getRecentItems(query)
+          val recentList: Set[Int] = recentItems.flatMap(x =>
+            model.itemStringIntMap.get(x))
+
+          val recentFeatures: Vector[Array[Double]] = recentList.toVector
+            // productModels may not contain the requested item
+            .map { i =>
+            productModels.get(i).flatMap { pm => pm.features }
+          }.flatten
+
+          if (recentFeatures.isEmpty) {
+            logger.info(s"No features vector for recent items ${recentItems}.")
+            predictDefault(
+              productModels = productModels,
+              query = query,
+              whiteList = whiteList,
+              blackList = finalBlackList
+            )
+          } else {
+            predictSimilarRecommendation(
+              recentFeatures = recentFeatures,
+              productModels = productModels,
+              query = query,
+              whiteList = whiteList,
+              blackList = finalBlackList
+            )
+          }
+        }
     }
 
     val itemScores = topScores.map { case (i, s) =>
@@ -608,7 +645,7 @@ class ECommAlgorithm(val ap: ECommAlgorithmParams)
   }
 
   /** Return top similar items based on items user recently has action on */
-  def predictSimilar(
+  def predictSimilarRecommendation(
     recentFeatures: Vector[Array[Double]],
     productModels: Map[Int, ProductModel],
     query: Query,
@@ -628,6 +665,44 @@ class ECommAlgorithm(val ap: ECommAlgorithmParams)
       }
       .map { case (i, pm) =>
         val s = recentFeatures.map{ rf =>
+          // pm.features must be defined because of filter logic above
+          cosine(rf, pm.features.get)
+        }.reduce(_ + _)
+        // may customize here to further adjust score
+        (i, s)
+      }
+      .filter(_._2 > 0) // keep items with score > 0
+      .seq // convert back to sequential collection
+
+    val ord = Ordering.by[(Int, Double), Double](_._2).reverse
+    val topScores = getTopN(indexScores, query.num)(ord).toArray
+
+    topScores
+  }
+
+  /** item과 비슷한 similar items들 return */
+  def predictSimilar(
+                      queryList: Set[Int],
+                      queryFeatures: Vector[Array[Double]],
+                      productModels: Map[Int, ProductModel],
+                      query: Query,
+                      whiteList: Option[Set[Int]],
+                      blackList: Set[Int]
+                    ): Array[(Int, Double)] = {
+    val indexScores: Map[Int, Double] = productModels.par // convert to parallel collection
+      .filter { case (i, pm) =>
+      pm.features.isDefined &&
+        (!queryList.contains(i)) && // only similar
+        isCandidateItem(
+          i = i,
+          item = pm.item,
+          categories = query.categories,
+          whiteList = whiteList,
+          blackList = blackList
+        )
+    }
+      .map { case (i, pm) =>
+        val s = queryFeatures.map{ rf =>
           // pm.features must be defined because of filter logic above
           cosine(rf, pm.features.get)
         }.reduce(_ + _)
