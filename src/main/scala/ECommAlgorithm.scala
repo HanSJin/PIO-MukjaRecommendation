@@ -388,10 +388,12 @@ class ECommAlgorithm(val ap: ECommAlgorithmParams)
 
 
         if (queryFeatures.isEmpty) {
-          logger.info(s"No productFeatures vector for query items ${query.items}.")
+          logger.info(s"Similar / Fail : ${query.items}.")
+          //logger.info(s"No productFeatures vector for query items ${query.items}.")
           print(s"******${query.items}. productFeatures X 없어요 ******")
           Array[(Int, Double)]()
         } else {
+          logger.info(s"Similar / Success : ${query.items}.")
           print(s"******${query.items}. productFeatures O 있어요 ******")
           predictSimilar(
             queryList = queryList,
@@ -409,6 +411,7 @@ class ECommAlgorithm(val ap: ECommAlgorithmParams)
             userFeatures.get(userIndex)
           }
         print(s"recommand.")
+        //logger.info(s"Recommand / KnownUser items : ${recentItems}.")
 
         if (userFeature.isDefined) {
         // the user has feature vector
@@ -437,7 +440,8 @@ class ECommAlgorithm(val ap: ECommAlgorithmParams)
           }.flatten
 
           if (recentFeatures.isEmpty) {
-            logger.info(s"No features vector for recent items ${recentItems}.")
+            //logger.info(s"No features vector for recent items ${recentItems}.")
+            logger.info(s"Recommand / Popular items : ${recentItems}.")
             predictDefault(
               productModels = productModels,
               query = query,
@@ -445,6 +449,7 @@ class ECommAlgorithm(val ap: ECommAlgorithmParams)
               blackList = finalBlackList
             )
           } else {
+            logger.info(s"Recommand / Similar items : ${recentItems}.")
             predictSimilarRecommendation(
               recentFeatures = recentFeatures,
               productModels = productModels,
