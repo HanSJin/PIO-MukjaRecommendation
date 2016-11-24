@@ -4,7 +4,7 @@ import io.prediction.controller.IEngineFactory
 import io.prediction.controller.Engine
 
 case class Query(
-  user: String,
+  users: List[String],
   num: Int,
   items: Option[Set[String]],
   categories: Option[Set[String]],
@@ -17,6 +17,7 @@ case class PredictedResult(
 ) extends Serializable
 
 case class ItemScore(
+                    algo: Int,
   item: String,
   score: Double
 ) extends Serializable

@@ -360,6 +360,9 @@ class ECommAlgorithm(val ap: ECommAlgorithmParams)
   }
 
   def predict(model: ECommModel, query: Query): PredictedResult = {
+	  logger.info(s"userFeature : ${query.users.mkString(",")}.")
+
+    var algo = 4;
 
     val userFeatures = model.userFeatures
     val productModels = model.productModels
@@ -373,47 +376,48 @@ class ECommAlgorithm(val ap: ECommAlgorithmParams)
       // convert seen Items list from String ID to interger Index
       .flatMap(x => model.itemStringIntMap.get(x))
 
-      val topScores: Array[(Int, Double)] =  if (query.items.isDefined) {
-        //logger.info(s"similar ${query.items}.")
-        print(s"******similar 영역 안에 들어옴 ******")
+    val topScores: Array[(Int, Double)] =  if (query.items.isDefined) {
+      //logger.info(s"similar ${query.items}.")
+      print(s"******similar 영역 안에 들어옴 ******")
 
-        //recentItems과 동일한 버전
-        val queryList: Set[Int] = query.items.get.flatMap(x => model.itemStringIntMap.get(x))
+      //recentItems과 동일한 버전
+      val queryList: Set[Int] = query.items.get.flatMap(x => model.itemStringIntMap.get(x))
 
-        val queryFeatures: Vector[Array[Double]] = queryList.toVector
-          // productModels may not contain the requested item
-          .map { i =>
-          productModels.get(i).flatMap { pm => pm.features }
-        }.flatten
+      val queryFeatures: Vector[Array[Double]] = queryList.toVector
+        // productModels may not contain the requested item
+        .map { i =>
+        productModels.get(i).flatMap { pm => pm.features }
+      }.flatten
 
 
-        if (queryFeatures.isEmpty) {
-          logger.info(s"Similar / Fail : ${query.items}.")
-          //logger.info(s"No productFeatures vector for query items ${query.items}.")
-          print(s"******${query.items}. productFeatures X 없어요 ******")
-          Array[(Int, Double)]()
-        } else {
-          logger.info(s"Similar / Success : ${query.items}.")
-          print(s"******${query.items}. productFeatures O 있어요 ******")
-          predictSimilar(
-            queryList = queryList,
-            queryFeatures = queryFeatures,
-            productModels = productModels,
-            query = query,
-            whiteList = whiteList,
-            blackList = finalBlackList
-          )
-        }
+      if (queryFeatures.isEmpty) {
+        logger.info(s"Similar / Fail : ${query.items}.")
+        //logger.info(s"No productFeatures vector for query items ${query.items}.")
+        print(s"******${query.items}. productFeatures X 없어요 ******")
+        Array[(Int, Double)]()
+      } else {
+        logger.info(s"Similar / Success : ${query.items}.")
+        print(s"******${query.items}. productFeatures O 있어요 ******")
+        predictSimilar(
+          queryList = queryList,
+          queryFeatures = queryFeatures,
+          productModels = productModels,
+          query = query,
+          whiteList = whiteList,
+          blackList = finalBlackList
+        )
       }
+    }
     else {
-        val userFeature: Option[Array[Double]] =
-          model.userStringIntMap.get(query.user).flatMap { userIndex =>
-            userFeatures.get(userIndex)
-          }
-        print(s"recommand.")
-        //logger.info(s"Recommand / KnownUser items : ${recentItems}.")
+      val userFeature: Option[Array[Double]] =
+        model.userStringIntMap.get(query.users(0)).flatMap { userIndex =>
+          userFeatures.get(userIndex)
+        }
+      print(s"recommand.")
+      //logger.info(s"Recommand / KnownUser items : ${recentItems}.")
 
-        if (userFeature.isDefined) {
+      if (userFeature.isDefined && query.users.length==1) {
+        algo = 1;
         // the user has feature vector
         predictKnownUser(
           userFeature = userFeature.get,
@@ -424,9 +428,10 @@ class ECommAlgorithm(val ap: ECommAlgorithmParams)
         )
       } else
       {
-        // the user doesn't have feature vector.
-        // For example, new user is created after model is trained.
-        logger.info(s"No userFeature found for user ${query.user}.")
+          // the user doesn't have feature vector.
+          // For example, new user is created after model is trained.
+          //logger.info(s"No userFeature found for user ${query.users.mkString(",")}.")
+          logger.info(s"No userFeature found for user ${query.users(0)}.")
 
           // check if the user has recent events on some items
           val recentItems: Set[String] = getRecentItems(query)
@@ -440,6 +445,7 @@ class ECommAlgorithm(val ap: ECommAlgorithmParams)
           }.flatten
 
           if (recentFeatures.isEmpty) {
+            algo = 2;
             //logger.info(s"No features vector for recent items ${recentItems}.")
             logger.info(s"Recommand / Popular items : ${recentItems}.")
             predictDefault(
@@ -449,6 +455,7 @@ class ECommAlgorithm(val ap: ECommAlgorithmParams)
               blackList = finalBlackList
             )
           } else {
+            algo = 3;
             logger.info(s"Recommand / Similar items : ${recentItems}.")
             predictSimilarRecommendation(
               recentFeatures = recentFeatures,
@@ -459,11 +466,12 @@ class ECommAlgorithm(val ap: ECommAlgorithmParams)
             )
           }
         }
-    }
+      }
 
     val itemScores = topScores.map { case (i, s) =>
       new ItemScore(
         // convert item int index back to string ID
+        algo = algo,
         item = model.itemIntStringMap(i),
         score = s
       )
@@ -472,42 +480,55 @@ class ECommAlgorithm(val ap: ECommAlgorithmParams)
     new PredictedResult(itemScores)
   }
 
+
+  /** 변경했음 오류나거나 작동 제대로 안하면 e-commerce blacklist가져오기*/
   /** Generate final blackList based on other constraints */
   def genBlackList(query: Query): Set[String] = {
+
     // if unseenOnly is True, get all seen items
     val seenItems: Set[String] = if (ap.unseenOnly) {
+      var seenItems1:Set[String] = Set(null)
+      for (i <- 0 to query.users.size-1) {
 
-      // get all user item events which are considered as "seen" events
-      val seenEvents: Iterator[Event] = try {
-        LEventStore.findByEntity(
-          appName = ap.appName,
-          entityType = "user",
-          entityId = query.user,
-          eventNames = Some(ap.seenEvents),
-          targetEntityType = Some(Some("item")),
-          // set time limit to avoid super long DB access
-          timeout = Duration(200, "millis")
-        )
-      } catch {
-        case e: scala.concurrent.TimeoutException =>
-          logger.error(s"Timeout when read seen events." +
-            s" Empty list is used. ${e}")
-          Iterator[Event]()
-        case e: Exception =>
-          logger.error(s"Error when read seen events: ${e}")
-          throw e
-      }
-
-      seenEvents.map { event =>
-        try {
-          event.targetEntityId.get
+        // get all user item events which are considered as "seen" events
+        val seenEvents: Iterator[Event] = try {
+          LEventStore.findByEntity(
+            appName = ap.appName,
+            entityType = "user",
+            entityId = query.users(i),
+            eventNames = Some(ap.seenEvents),
+            targetEntityType = Some(Some("item")),
+            // set time limit to avoid super long DB access
+            timeout = Duration(200, "millis")
+          )
         } catch {
-          case e => {
-            logger.error(s"Can't get targetEntityId of event ${event}.")
+          case e: scala.concurrent.TimeoutException =>
+            logger.error(s"Timeout when read seen events." +
+              s" Empty list is used. ${e}")
+            Iterator[Event]()
+          case e: Exception =>
+            logger.error(s"Error when read seen events: ${e}")
             throw e
-          }
         }
-      }.toSet
+
+        val seenItems2:Set[String] = seenEvents.map { event =>
+          try {
+            event.targetEntityId.get
+          } catch {
+            case e => {
+              logger.error(s"Can't get targetEntityId of event ${event}.")
+              throw e
+            }
+          }
+        }.toSet
+
+        if(i==0)
+          seenItems1 = seenItems2
+        else
+          seenItems1.intersect(seenItems2).toSet
+
+      }
+      seenItems1
     } else {
       Set[String]()
     }
@@ -546,39 +567,49 @@ class ECommAlgorithm(val ap: ECommAlgorithmParams)
   /** Get recent events of the user on items for recommending similar items */
   def getRecentItems(query: Query): Set[String] = {
     // get latest 10 user view item events
-    val recentEvents = try {
-      LEventStore.findByEntity(
-        appName = ap.appName,
-        // entityType and entityId is specified for fast lookup
-        entityType = "user",
-        entityId = query.user,
-        eventNames = Some(ap.similarEvents),
-        targetEntityType = Some(Some("item")),
-        limit = Some(10),
-        latest = true,
-        // set time limit to avoid super long DB access
-        timeout = Duration(200, "millis")
-      )
-    } catch {
-      case e: scala.concurrent.TimeoutException =>
-        logger.error(s"Timeout when read recent events." +
-          s" Empty list is used. ${e}")
-        Iterator[Event]()
-      case e: Exception =>
-        logger.error(s"Error when read recent events: ${e}")
-        throw e
-    }
 
-    val recentItems: Set[String] = recentEvents.map { event =>
-      try {
-        event.targetEntityId.get
+    var recentItems:Set[String] = Set(null)
+    for (i <- 0 to query.users.size-1) {
+      var recentEvents = try {
+        LEventStore.findByEntity(
+          appName = ap.appName,
+          // entityType and entityId is specified for fast lookup
+          entityType = "user",
+          entityId = query.users(i),
+          eventNames = Some(ap.similarEvents),
+          targetEntityType = Some(Some("item")),
+          limit = Some(10),
+          latest = true,
+          // set time limit to avoid super long DB access
+          timeout = Duration(200, "millis")
+        )
       } catch {
-        case e => {
-          logger.error("Can't get targetEntityId of event ${event}.")
+        case e: scala.concurrent.TimeoutException =>
+          logger.error(s"Timeout when read recent events." +
+            s" Empty list is used. ${e}")
+          Iterator[Event]()
+        case e: Exception =>
+          logger.error(s"Error when read recent events: ${e}")
           throw e
-        }
       }
-    }.toSet
+
+      val recentItems2: Set[String] = recentEvents.map { event =>
+        try {
+          event.targetEntityId.get
+        } catch {
+          case e => {
+            logger.error("Can't get targetEntityId of event ${event}.")
+            throw e
+          }
+        }
+      }.toSet
+
+      if(i==0){
+        recentItems = recentItems2
+      }else {
+        recentItems.intersect(recentItems2).toSet
+      }
+    }
 
     recentItems
   }
@@ -741,8 +772,7 @@ class ECommAlgorithm(val ap: ECommAlgorithmParams)
   }
 
   private
-  def dotProduct(v1: Array[Double], v2: Array[Double]): Double = {
-    val size = v1.size
+  def dotProduct(v1: Array[Double], v2: Array[Double]): Double = {    val size = v1.size
     var i = 0
     var d: Double = 0
     while (i < size) {
