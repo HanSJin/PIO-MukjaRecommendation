@@ -188,6 +188,66 @@ class ECommAlgorithm(val ap: ECommAlgorithmParams)
     }
       .cache()
 
+    val v_mllibRatings = data.viewtimeEvents
+      .map { r =>
+        // Convert user and item String IDs to Int index for MLlib
+        //입력 값 제대로 들어왔나 확인 후 이상있는 item이나 user값을 -1로 변경한다
+        val uindex = userStringIntMap.getOrElse(r.user, -1)
+        val iindex = itemStringIntMap.getOrElse(r.item, -1)
+
+        if (uindex == -1)
+          logger.info(s"Couldn't convert nonexistent user ID ${r.user}"
+            + " to Int index.")
+
+        if (iindex == -1)
+          logger.info(s"Couldn't convert nonexistent item ID ${r.item}"
+            + " to Int index.")
+
+        ((uindex, iindex), 1.0)
+      }
+      .filter { case ((u, i), v) =>
+        // item이나 user값이 -1인 값들을 제외시킨다
+        // keep events with valid user and item index
+        (u != -1) && (i != -1)
+      }
+      .reduceByKey(_ + _) // aggregate all view time events of same user-item pair //키가 같은 것 끼리 v값을 더함
+      .map { case ((u, i), v) =>
+      // MLlibRating requires integer index for user and item
+      //최종 값들 저장
+      ((u, i), v)
+    }
+      .cache()
+
+    val v_mllibRatings = data.viewlengthEvents
+      .map { r =>
+        // Convert user and item String IDs to Int index for MLlib
+        //입력 값 제대로 들어왔나 확인 후 이상있는 item이나 user값을 -1로 변경한다
+        val uindex = userStringIntMap.getOrElse(r.user, -1)
+        val iindex = itemStringIntMap.getOrElse(r.item, -1)
+
+        if (uindex == -1)
+          logger.info(s"Couldn't convert nonexistent user ID ${r.user}"
+            + " to Int index.")
+
+        if (iindex == -1)
+          logger.info(s"Couldn't convert nonexistent item ID ${r.item}"
+            + " to Int index.")
+
+        ((uindex, iindex), 1.0)
+      }
+      .filter { case ((u, i), v) =>
+        // item이나 user값이 -1인 값들을 제외시킨다
+        // keep events with valid user and item index
+        (u != -1) && (i != -1)
+      }
+      .reduceByKey(_ + _) // aggregate all view lengthevents of same user-item pair //키가 같은 것 끼리 v값을 더함
+      .map { case ((u, i), v) =>
+      // MLlibRating requires integer index for user and item
+      //최종 값들 저장
+      ((u, i), v)
+    }
+      .cache()
+
     val r_mllibRatings = data.rateEvents
       .map { r =>
         // Convert user and item String IDs to Int index for MLlib
@@ -360,7 +420,6 @@ class ECommAlgorithm(val ap: ECommAlgorithmParams)
   }
 
   def predict(model: ECommModel, query: Query): PredictedResult = {
-	  logger.info(s"userFeature : ${query.users.mkString(",")}.")
 
     var algo = 4;
 
@@ -772,7 +831,9 @@ class ECommAlgorithm(val ap: ECommAlgorithmParams)
   }
 
   private
-  def dotProduct(v1: Array[Double], v2: Array[Double]): Double = {    val size = v1.size
+  def dotProduct(v1: Array[Double], v2: Array[Double]): Double = {
+    logger.info(s"v1.size : ${v1.size}.")
+    val size = v1.size
     var i = 0
     var d: Double = 0
     while (i < size) {
