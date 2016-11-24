@@ -123,7 +123,9 @@ class DataSource(val dsp: DataSourceParams)
       items = itemsRDD,
       viewEvents = viewEventsRDD,
       rateEvents = rateEventsRDD,
-      likeEvents = likeEventsRDD
+      likeEvents = likeEventsRDD,
+      viewlengthEvents = viewlengthEventsRDD,
+      viewtimeEvents = viewtimeEventsRDD
     )
   }
 }
@@ -138,18 +140,26 @@ case class RateEvent(user: String, item: String, rating: Double, t: Long)
 
 case class LikeEvent(user: String, item: String, like: Boolean, t: Long)
 
+case class ViewLengthEvent(user: String, item: String, length: Double, t: Long)
+
+case class ViewTimeEvent(user: String, item: String, time: Double, t: Long)
+
 class TrainingData(
   val users: RDD[(String, User)],
   val items: RDD[(String, Item)],
   val viewEvents: RDD[ViewEvent],
   val rateEvents: RDD[RateEvent],
-  val likeEvents: RDD[LikeEvent]
+  val likeEvents: RDD[LikeEvent],
+  val viewlengthEvents: RDD[ViewLengthEvent],
+  val viewtimeEvents: RDD[ViewTimeEvent]
 ) extends Serializable {
   override def toString = {
     s"users: [${users.count()} (${users.take(2).toList}...)]" +
     s"items: [${items.count()} (${items.take(2).toList}...)]" +
     s"viewEvents: [${viewEvents.count()}] (${viewEvents.take(2).toList}...)" +
     s"rateEvents: [${rateEvents.count()}] (${rateEvents.take(2).toList}...)" +
-    s"likeEvents: [${likeEvents.count()}] (${likeEvents.take(2).toList}...)"
+    s"likeEvents: [${likeEvents.count()}] (${likeEvents.take(2).toList}...)" +
+    s"likelenghtEvents: [${likelengthEvents.count()}] (${likelengthEvents.take(2).toList}...)" + 
+      s"liketimeEvents: [${liketimeEvents.count()}] (${liketimeEvents.take(2).toList}...)"
   }
 }
